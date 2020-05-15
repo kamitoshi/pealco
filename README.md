@@ -1,24 +1,33 @@
-# README
+# PeAlco
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+今日は家で飲みたいな、、、  
+でも、何飲もうかな？何をつまみにしようかな？そんな時のちょっとした手助けに！
+みんながやっている飲み合わせ、食べ合わせを掲載！！  
+チャット機能を通して飲み友達を作ることも。  
+カレンダーを使って、オンライン飲み会のスケジュール管理も。
 
-* Ruby version
+### テーマを選んだ理由
 
-* System dependencies
+2020/5 現在、コロナ感染拡大中で外に飲みに行けない人が多い中、オンライン飲み会の需要が高まった。  
+飲むのは居酒屋と決めていた人も家で飲むしか選択肢がない中で、おつまみや飲み合わせ専用のサイトがあったらいいな  
+という個人的な願望により作成する運びとなりました。
 
-* Configuration
+### ターゲットユーザ
 
-* Database creation
+•仕事終わりに家でゆっくり飲みたい人  
+•家で凝った料理を作って飲みたい人  
+•オンライン飲み会に誘われた時のおつまみを検索したい人
 
-* Database initialization
+### 主な利用シーン
 
-* How to run the test suite
+仕事のちょっとした休憩中に、投稿された画像を見て今日帰ってからのちょっとした楽しみを作る。  
+新しい飲み友達や、遠方の友達とのコミュニケーションツールとして使う。  
+オンライン飲み会にスケジュール管理に使う。
 
-* Services (job queues, cache servers, search engines, etc.)
+## 設計書
 
-* Deployment instructions
+### 機能一覧
 
-* ...
+https://docs.google.com/spreadsheets/d/1I5vdTHqn5IiwmtPpze67i_Ql-SUrbg2H38qOsVX21Dk/edit?usp=sharing
