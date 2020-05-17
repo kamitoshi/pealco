@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="title">
+      <h1>S i g n U p</h1>
+    </div>
+    <div class="form-box">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="form-group">
+          <%= f.label :name, "ニックネーム" %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :alc_category_id, "好きなお酒" %><br />
+          <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, include_blank: "--選択してください--" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :introduction, "自己紹介文" %><br />
+          <%= f.text_area :introduction, autocomplete: "introduction", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(英数 <%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, "パスワード確認" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "新規登録", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

@@ -38,7 +38,7 @@ MenuCategory.create!(
     email: "test#{n + 1}@mail.com",
     password: "test#{(n+1).to_s+(n+1).to_s}",
     password_confirmation: "test#{(n+1).to_s+(n+1).to_s}",
-    image: open("#{Rails.root}/app/assets/images/users/no_image.png"),
+    # image: open("#{Rails.root}/app/assets/images/users/no_image.png"),
     alc_category_id: n+1
   )
 end
