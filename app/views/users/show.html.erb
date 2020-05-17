@@ -1,2 +1,77 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 ma-t-50">
+      <%= render "users/user_info", user: current_user %>
+    </div>
+    <div class="col-lg-8 ma-t-30">
+      <div class="title pa-20 center">
+        <h１ class="font-30"><%= @user.name %>さんの詳細</h１>
+      </div>
+
+      <div class="profile-image-box pa-20 center">
+        <%= user_info_image(@user) %>
+      </div>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">ニックネーム</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th scope="row">好きなジャンル</th>
+            <td><%= favorite_alc_name(@user) %></td>
+          </tr>
+          <tr>
+            <th scope="row">自己紹介文</th>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="border-top: 0;"><%= @user.introduction %></td>
+          </tr>
+        </tbody>
+      </table>	
+      <div class="title pa-20 center">
+        <h１ class="font-30">投稿一覧</h１>
+      </div>
+      <%# each %>
+          <div class="post-box border pa-10 ma-y-20">
+            <div class="post-box-title">
+              <h4 class="center">title</h4>
+            </div>
+            <hr>
+            <div class="post-box-image">
+              
+            </div>
+            <div class="post-box-content">
+              
+            </div>
+          </div>
+          <div class="post-box border pa-10 ma-y-20">
+            <div class="post-box-title">
+              <h4 class="center">title</h4>
+            </div>
+            <hr>
+            <div class="post-box-image">
+              
+            </div>
+            <div class="post-box-content">
+              
+            </div>
+          </div>
+          <div class="post-box border pa-10 ma-y-20">
+            <div class="post-box-title">
+              <h4 class="center">title</h4>
+            </div>
+            <hr>
+            <div class="post-box-image">
+              
+            </div>
+            <div class="post-box-content">
+              
+            </div>
+          </div>
+      <%# end %>
+    </div>
+  </div>
+</div>

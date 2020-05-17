@@ -1,0 +1,25 @@
+<div class="profile-image-box pa-20 center">
+  <%= user_info_image(user) %>
+</div>
+<table class="table borderless">
+  <tbody>
+    <tr>
+      <th scope="row">ニックネーム</th>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <th scope="row">好きなジャンル</th>
+      <td><%= favorite_alc_name(user) %></td>
+    </tr>
+    <tr>
+      <th scope="row">自己紹介文</th>
+      <td></td>
+    </tr>
+    <tr>
+      <td style="border-top: 0;"><%= user.introduction %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="center wid-70 ma-a">
+  <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg " %>
+</div>
