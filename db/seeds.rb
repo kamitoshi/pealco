@@ -10,15 +10,15 @@
 
 AlcCategory.create!(
   [
-    {name:"ビール", image: open("#{Rails.root}/app/assets/images/alc/beer.jpg")},
-    {name:"ハイボール", image: open("#{Rails.root}/app/assets/images/alc/highboll.jpg")},
-    {name:"レモンサワー", image: open("#{Rails.root}/app/assets/images/alc/lemon.jpg")},
-    {name:"日本酒", image: open("#{Rails.root}/app/assets/images/alc/japan.jpg")},
-    {name:"焼酎", image: open("#{Rails.root}/app/assets/images/alc/shochu.jpeg")},
-    {name:"ワイン", image: open("#{Rails.root}/app/assets/images/alc/wine.jpg")},
-    {name:"スパークリングワイン", image: open("#{Rails.root}/app/assets/images/alc/speakringWine.jpg")},
-    {name:"カクテル", image: open("#{Rails.root}/app/assets/images/alc/kakuteru.jpg")},
-    {name:"その他", image: open("#{Rails.root}/app/assets/images/alc/other.jpg")}
+    {name:"ビール", image: File.open("#{Rails.root}/public/alc/beer.jpg")},
+    {name:"ハイボール", image: File.open("#{Rails.root}/public/alc/highboll.jpg")},
+    {name:"レモンサワー", image: File.open("#{Rails.root}/public/alc/lemon.jpg")},
+    {name:"日本酒", image: File.open("#{Rails.root}/public/alc/japan.jpg")},
+    {name:"焼酎", image: File.open("#{Rails.root}/public/alc/shochu.jpeg")},
+    {name:"ワイン", image: File.open("#{Rails.root}/public/alc/wine.jpg")},
+    {name:"スパークリングワイン", image: File.open("#{Rails.root}/public/alc/speakringWine.jpg")},
+    {name:"カクテル", image: File.open("#{Rails.root}/public/alc/kakuteru.jpg")},
+    {name:"その他", image: File.open("#{Rails.root}/public/alc/other.jpg")}
   ]
 )
 

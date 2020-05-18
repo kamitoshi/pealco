@@ -1,2 +1,51 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="title ma-t-50">
+        <h1 class="font-30">投稿編集</h1>
+      </div>
+
+      <%= form_for @post do |f| %>
+
+        <div class="form-group">
+          <div class="profile_image_box pa-20">
+            <%= post_show_image(@post) %>
+          </div>
+          <%= f.file_field :image %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :menu_name, "メニュー名" %>
+          <%= f.text_field :menu_name, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :alc_category, "お酒ジャンル" %><br>
+          <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :menu_category, "投稿ジャンル" %><br>
+          <%= f.collection_select :menu_category_id, MenuCategory.all, :id, :name %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :content, "投稿内容" %>
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+
+        <div class="form-group right ma-t-20">
+          <%= f.submit "編集", class: "btn-primary btn-lg" %>
+        </div>
+
+      <% end %>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

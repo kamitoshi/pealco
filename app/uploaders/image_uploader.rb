@@ -45,7 +45,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    "profile_image.jpg" if original_filename
+    original_filename if original_filename
   end
 
   #サムネイルの為に画像をリサイズ
@@ -59,6 +59,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [200, 200] 
   end 
   version :thumb300 do 
-    process resize_to_fit: [300, 300] 
+    process resize_to_fit: [300, 200] 
   end 
 end

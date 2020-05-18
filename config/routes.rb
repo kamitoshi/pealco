@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     passwords: "users/passwords",
     registrations: "users/registrations"
   }
-  resources :users, only:[:index, :show, :edit, :update, :destroy]
+  resources :users, only:[:index, :show, :edit, :update, :destroy] do
+    resources :likes, only:[:index, :create, :destroy]
+  end
   resources :posts do
     resources :comments, only:[:create, :update, :destroy]
   end
