@@ -1,2 +1,44 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 ma-t-50">
+      <%= render "users/user_info", user: @post.user %>
+    </div>
+    <div class="col-lg-8 ma-t-30">
+      <div class="title pa-20 center">
+        <h１ class="font-30"><%= @post.title %></h１>
+      </div>
+      <div class="post-box-info pa-10 right">
+        <span><%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %></span>
+        <span><%= link_to "Delete", post_path(@post),method: :delete, class: "btn btn-danger" %></span>
+      </div>
+      <div class="post-box-info ma-r-10 right">
+        <span>投稿日時：<%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+      </div>
+      <hr>
+      <div class="post-box pa-10">
+        <div class="post-box-image center">
+          <%= image_tag @post.alc_category.image.thumb300.to_s %>  x  <%= image_tag @post.image.thumb300.to_s %>
+        </div>
+        <div class="post-box-content pa-50">
+          <%= @post.content %>
+        </div>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">お酒ジャンル：</th>
+              <td><%= @post.alc_category.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">ジャンル：</th>
+              <td><%= @post.menu_category.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">コメント</th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </>
+  </div>
+</div>
