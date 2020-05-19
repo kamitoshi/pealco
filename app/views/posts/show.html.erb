@@ -30,13 +30,17 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
               ジャンル：<%= @post.menu_category.name %>
             </li>
+            <hr>
           </ul>
-          <div id="comments_area">
-            <%= render "comments/index", comments: @comments %>
+          <div id="like_toggle" class="post-box-like right">
+            <%= render "likes/like_btn", {user: current_user, post: @post, like: @like} %>
           </div>
-          <%= render "comments/form", {comment: @comment, post: @post} %>
-        </div>    
+        </div>
+        <div id="comments_area">
+          <%= render "comments/index", comments: @comments %>
+        </div>
+        <%= render "comments/form", {comment: @comment, post: @post} %> 
       </div>
-    </>
+    </div>
   </div>
 </div>

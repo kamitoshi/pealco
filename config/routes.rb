@@ -7,10 +7,11 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   resources :users, only:[:index, :show, :edit, :update, :destroy] do
-    resources :likes, only:[:index, :create, :destroy]
+    resources :likes, only:[:index]
   end
   resources :posts do
     resources :comments, only:[:create, :update, :destroy]
+    resources :likes, only:[:create, :destroy]
   end
   resources :rooms, only:[:show, :create] do
     post 'messages/create'
