@@ -22,22 +22,20 @@
         <div class="post-box-content pa-50">
           <%= @post.content %>
         </div>
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">お酒ジャンル：</th>
-              <td><%= @post.alc_category.name %></td>
-            </tr>
-            <tr>
-              <th scope="row">ジャンル：</th>
-              <td><%= @post.menu_category.name %></td>
-            </tr>
-            <tr>
-              <th scope="row">コメント</th>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="category-list-box">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              お酒ジャンル：<%= @post.alc_category.name %>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              ジャンル：<%= @post.menu_category.name %>
+            </li>
+          </ul>
+          <div id="comments_area">
+            <%= render "comments/index", comments: @comments %>
+          </div>
+          <%= render "comments/form", {comment: @comment, post: @post} %>
+        </div>    
       </div>
     </>
   </div>
