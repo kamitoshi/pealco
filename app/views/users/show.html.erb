@@ -11,7 +11,9 @@
       <div class="profile-image-box pa-20 center">
         <%= user_info_image(@user) %>
       </div>
-
+      <div id="follow_info">
+        <%= render "follows/follow_info", user: @user %>
+      </div>
       <table class="table">
         <tbody>
           <tr>
@@ -30,7 +32,12 @@
             <td style="border-top: 0;"><%= @user.introduction %></td>
           </tr>
         </tbody>
-      </table>	
+      </table>
+      <% unless @user == current_user %>
+        <div id="follow_toggle" class="right">
+          <%= render "follows/follow_btn", user: @user %>
+        </div>
+      <% end %>
       <div class="title pa-20 center">
         <h１ class="font-30">投稿一覧</h１>
       </div>
@@ -58,7 +65,7 @@
         <% end %>
       <% else %>
         <p class="ma-t-30 center">まだ投稿はありません</p>
-      <% end %>      <%# end %>
+      <% end %>
     </div>
   </div>
 </div>

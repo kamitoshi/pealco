@@ -1,0 +1,5 @@
+<% if current_user.follow?(user) %>
+  <%= link_to "フォローをやめる", follow_path(current_user.follow(user), user_id: user.id), method: :delete, remote: true, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "フォローする", follows_path(user_id: user.id), method: :post, remote: true, class: "btn btn-primary" %>
+<% end %>

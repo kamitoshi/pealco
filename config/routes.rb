@@ -7,8 +7,13 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   resources :users, only:[:index, :show, :edit, :update, :destroy] do
+    member do
+      get "follow"
+      get "follower"
+    end
     resources :likes, only:[:index]
   end
+  resources :follows, only:[:create, :destroy]
   resources :posts do
     resources :comments, only:[:create, :update, :destroy]
     resources :likes, only:[:create, :destroy]

@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except:[:index]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :follower]
 
   def index
     @users = User.all
+  end
 
+  def follow
+  end
+
+  def follower
   end
 
   def show
