@@ -20,9 +20,26 @@
     </tr>
   </tbody>
 </table>
+<hr>
 <div class="center wid-70 ma-a">
   <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
 </div>
 <div class="center wid-70 ma-a ma-t-20">
   <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
 </div>
+<table class="table borderless ma-t-20">
+  <tbody>
+    <tr>
+      <th scope="row">投稿</th>
+      <td><%= link_to user.posts.count, posts_path(user_id: user.id) %></td>
+    </tr>
+    <tr>
+      <th scope="row">フォロー</th>
+      <td><%= link_to user.follow_users.count, follow_user_path(user) %></td>
+    </tr>
+    <tr>
+      <th scope="row">フォロワー</th>
+      <td><%= link_to user.followed_users.count, follower_user_path(user) %></td>
+    </tr>
+  </tbody>
+</table>

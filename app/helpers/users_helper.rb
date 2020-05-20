@@ -26,4 +26,12 @@ module UsersHelper
     end
   end
 
+  def follow_status(user)
+    unless current_user == user
+      if current_user.follow?(user)
+        "フォロー中"
+      end
+    end
+  end
+
 end
