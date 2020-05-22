@@ -10,9 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    cookies.encrypted[:user_id] = resource.id
+  end
 
   # GET /resource/edit
   # def edit

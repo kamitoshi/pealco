@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "home#top"
   get '/about', to: "home#about", as: "about"
+
+  mount ActionCable.server => "/cable"
+
   devise_for :users, controllers:{
     sessions: "users/sessions",
     passwords: "users/passwords",
@@ -12,15 +15,16 @@ Rails.application.routes.draw do
       get "follower"
     end
     resources :likes, only:[:index]
+    resources :rooms, only:[:create]
+  end
+  resources :rooms, only:[:show] do
+    resources :messages, only:[:create, :destroy]
   end
   resources :follows, only:[:create, :destroy]
   resources :posts do
     resources :comments, only:[:create, :update, :destroy]
     resources :likes, only:[:create, :destroy]
   end
-  resources :rooms, only:[:show, :create] do
-    post 'messages/create'
-    delete 'messeges/destroy'
-  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

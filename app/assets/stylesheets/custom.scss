@@ -182,6 +182,9 @@
 .pa-l-50 {
   padding-left: 50px;
 }
+.pa-l-100 {
+  padding-left: 100px;
+}
 .pa-r-10 {
   padding-right: 10px;
 }
@@ -196,6 +199,9 @@
 }
 .pa-r-50 {
   padding-right: 50px;
+}
+.pa-r-100 {
+  padding-right: 100px;
 }
 
 // border //
@@ -244,6 +250,11 @@
 .dis-flex-box {
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
+}
+.dis-flex-center {
+  display: flex;
+  justify-content: center;
   align-items: stretch;
 }
 .dis-ib {
