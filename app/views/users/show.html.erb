@@ -11,25 +11,32 @@
       <div class="profile-image-box pa-20 center">
         <%= user_info_image(@user) %>
       </div>
+      <div class="message-link right">
+        <%= link_to "メッセージを送る", user_rooms_path(@user),method: :post, class: "btn btn-success" %>
+      </div>
       <div id="follow_info">
         <%= render "follows/follow_info", user: @user %>
       </div>
       <table class="table">
         <tbody>
           <tr>
-            <th scope="row">ニックネーム</th>
-            <td><%= @user.name %></td>
+            <td width="15%"></td>
+            <th scope="row" width="35%">ニックネーム</th>
+            <td width="50%"><%= @user.name %></td>
           </tr>
           <tr>
+            <td></td>
             <th scope="row">好きなジャンル</th>
             <td><%= favorite_alc_name(@user) %></td>
           </tr>
           <tr>
+            <td></td>
             <th scope="row">自己紹介文</th>
             <td></td>
           </tr>
           <tr>
-            <td style="border-top: 0;"><%= @user.introduction %></td>
+            <td style="border-top: 0;"></td>
+            <td style="border-top: 0;" colspan="2"><div class="ma-r-30"><%= @user.introduction %></div></td>
           </tr>
         </tbody>
       </table>

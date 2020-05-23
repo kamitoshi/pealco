@@ -42,3 +42,5 @@ MenuCategory.create!(
     alc_category_id: n+1
   )
 end
+
+puts "初期データを登録しました"

@@ -9,16 +9,20 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    cookies.encrypted[:user_id] = resource.id
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+    cookies.encrypted[:user_id] = nil
+  end
 
-  # protected
+  protect_from_forgery with: :exception
+
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

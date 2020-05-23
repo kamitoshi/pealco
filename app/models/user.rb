@@ -11,6 +11,13 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Follow", foreign_key: "follow_id"
   has_many :followed_users, through: :followed, source: :user
 
+  # roomリレーション
+  has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms
+
+  # messageリレーション
+  has_many :messages, dependent: :nullify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,6 +42,11 @@ class User < ApplicationRecord
   # 引数で渡されたユーザーをフォローしているかを判別する
   def follow?(user)
     self.follow_users.include?(user)
+  end
+
+  # 引数により渡されたRoomに紐づく中間テーブル作成メソッド
+  def user_room(room)
+    self.user_rooms.find_or_create_by(room_id: room.id)
   end
 
 end

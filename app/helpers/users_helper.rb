@@ -34,4 +34,20 @@ module UsersHelper
     end
   end
 
+  def communication_user_name(users)
+    users.each do |user|
+      unless user.name == current_user.name
+        return user.name
+      end
+    end
+  end
+
+  def communication_user(users)
+    users.each do |user|
+      unless user == current_user
+        return user
+      end
+    end
+  end
+
 end
