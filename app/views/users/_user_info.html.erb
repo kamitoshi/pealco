@@ -20,13 +20,6 @@
     </tr>
   </tbody>
 </table>
-<hr>
-<div class="center wid-70 ma-a">
-  <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
-</div>
-<div class="center wid-70 ma-a ma-t-20">
-  <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
-</div>
 <table class="table borderless ma-t-20">
   <tbody>
     <tr>
@@ -43,3 +36,24 @@
     </tr>
   </tbody>
 </table>
+<div class="center wid-70 ma-a">
+  <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
+</div>
+<div class="center wid-70 ma-a  ma-t-20">
+  <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
+</div>
+<div class="chat-rooms">
+  <div class="chat-rooms-title center ma-t-30">
+    <h4>チャット一覧</h4>
+  </div>
+  <div class="chat-index-box">
+    <ul class="list-group list-group-flush">
+      <% user.rooms.each do |room| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= link_to communication_user_name(room.users), user_rooms_path(communication_user(room.users)), method: :post, class:"center" %>
+        </li>
+      <% end %>
+      <hr>
+    </ul>
+  </div>
+</div>

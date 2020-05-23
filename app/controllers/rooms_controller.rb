@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
   end
 
   private
+
   def room_find_or_create(rooms, other_rooms)
     if rooms.any? && other_rooms.any?
       rooms.each do |room|

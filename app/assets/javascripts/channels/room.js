@@ -27,6 +27,11 @@ App.room = App.cable.subscriptions.create(
 );
 
 document.addEventListener("DOMContentLoaded", function () {
+  // function scrollBottom() {
+  //   var elementHtml = document.documentElement;
+  //   var bottom = elementHtml.scrollHeight - elementHtml.clientHeight;
+  //   window.scroll(0, bottom);
+  // }
   var input = document.getElementById("chat_input");
   var chat_btn = document.getElementById("chat_btn");
   chat_btn.addEventListener("click", function () {
