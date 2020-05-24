@@ -16,7 +16,7 @@
       <td></td>
     </tr>
     <tr>
-      <td style="border-top: 0;" colspan="2"><%= user.introduction %></td>
+      <td style="border-top: 0;" colspan="2"><%= simple_format(user.introduction) %></td>
     </tr>
   </tbody>
 </table>
@@ -42,6 +42,26 @@
 <div class="center wid-70 ma-a  ma-t-20">
   <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
 </div>
+<div class="center ma-t-30">
+  <h4>本日の予定</h4>
+</div>
+<div class="today-schedule">
+  <ul class="list-group list-group-flush">
+    <% if user.schedules.any? %>
+      <% user.schedules.each do |schedule| %>
+        <% if schedule.start_date.to_date == Date.today %>
+          <li class="ma-l-50"><%= schedule.title %></li>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>本日の予定はありません</p>
+    <% end %>
+  </ul>
+</div>
+<div class="center wid-70 ma-a ma-t-20">
+  <%= link_to "スケジュール確認", schedules_path, class:"btn btn-outline-primary btn-lg wid-100" %>
+</div>
+<hr>
 <div class="chat-rooms">
   <div class="chat-rooms-title center ma-t-30">
     <h4>チャット一覧</h4>

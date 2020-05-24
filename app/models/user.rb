@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :user_rooms
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :schedules, dependent: :destroy
   # followリレーション
   has_many :follows, dependent: :destroy
   has_many :follow_users, through: :follows, source: :follow

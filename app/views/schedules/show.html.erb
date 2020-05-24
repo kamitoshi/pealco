@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="schedule-detail-title">
+        <h1>スケジュール詳細</h1>
+      </div>
+      <div class="schedule-detail-box">
+        <table class="table table-borderless font-20 ma-t-50">
+          <tbody>
+            <tr>
+              <th scorp="row" width="30%">日付</th>
+              <td><%= @schedule.start_date.strftime("%Y年%m月%d日") %></td>
+            </tr>
+            <tr>
+              <th scorp="row">タイトル</th>
+              <td><%= @schedule.title %></td>
+            </tr>
+            <tr>
+              <th scorp="row">内容</th>
+              <td><%= simple_format(@schedule.content) %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="schedule-btn-box ma-t-50">
+          <div class="schedule-edit-btn dis-ib pa-x-50">
+            <%= link_to "スケジュール編集", edit_schedule_path(@schedule), class:"btn btn-primary" %>
+          </div>
+          <div class="schedule-delete-btn dis-ib pa-x-50">
+            <%= link_to "スケジュール削除", schedule_path(@schedule), method: :delete, class:"btn btn-danger" %>
+          </div>
+          <div class="schedule-delete-btn dis-ib pa-x-50">
+            <%= link_to "戻る",:back, class:"btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
