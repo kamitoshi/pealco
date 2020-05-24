@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_104654) do
+ActiveRecord::Schema.define(version: 2020_05_23_222011) do
 
   create_table "alc_categories", force: :cascade do |t|
     t.string "name"
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(version: 2020_05_19_104654) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "start_date"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

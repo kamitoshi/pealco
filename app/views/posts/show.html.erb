@@ -20,7 +20,7 @@
           <%= image_tag @post.alc_category.image.thumb300.to_s %>  x  <%= image_tag @post.image.thumb300.to_s %>
         </div>
         <div class="post-box-content pa-50">
-          <%= @post.content %>
+          <%= simple_format(@post.content) %>
         </div>
         <div class="category-list-box">
           <ul class="list-group list-group-flush">

@@ -26,6 +26,7 @@ module UsersHelper
     end
   end
 
+  # フォローしている場合は表示
   def follow_status(user)
     unless current_user == user
       if current_user.follow?(user)
@@ -34,6 +35,7 @@ module UsersHelper
     end
   end
 
+  # チャット相手の名前を表示
   def communication_user_name(users)
     users.each do |user|
       unless user.name == current_user.name
@@ -42,11 +44,18 @@ module UsersHelper
     end
   end
 
+  # チャット相手の情報を表示
   def communication_user(users)
     users.each do |user|
       unless user == current_user
         return user
       end
+    end
+  end
+
+  def today_schedule(schedule)
+    if schedule.start_date.to_date == Date.today
+      schedule.title
     end
   end
 
