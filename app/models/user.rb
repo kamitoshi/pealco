@@ -25,6 +25,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length:{maximum:20}
+  validates :introduction, length:{maximum:400}
   mount_uploader :image, ImageUploader
 
   # 引数で渡されたユーザーをフォローする

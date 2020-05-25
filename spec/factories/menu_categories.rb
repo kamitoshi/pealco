@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :menu_category do
-    name { "MyString" }
+    name { "定番" }
   end
 end

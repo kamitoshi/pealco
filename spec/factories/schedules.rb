@@ -1,8 +1,11 @@
+require 'faker'
+require 'forgery_ja'
+
 FactoryBot.define do
   factory :schedule do
-    title { "MyString" }
-    content { "MyText" }
+    title { Faker::Lorem.sentence }
+    content { Faker::Lorem.paragraph }
     start_date { "2020-05-24 07:20:11" }
-    user { nil }
+    association :user, factory: :user
   end
 end
