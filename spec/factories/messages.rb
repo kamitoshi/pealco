@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :message do
-    content { "MyText" }
-    user { nil }
-    room { nil }
+    content { "コメントコメントコメントコメントコメントコメント" }
+    association :user, factory: :user
+    association :room
   end
 end

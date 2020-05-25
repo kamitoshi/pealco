@@ -10,7 +10,8 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :menu_name, presence: true
   validates :content, presence: true, length:{maximum:400}
-  validates :image, presence: true
+  validates :user_id, presence: true
+  validates :alc_category_id, presence: true
+  validates :menu_category_id, presence: true
 
-  
 end
