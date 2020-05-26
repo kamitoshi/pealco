@@ -1,0 +1,11 @@
+<div class="dis-flex-box wid-50 ma-a">
+  <div class="post_count">
+    <p>投稿<span class="ma-l-10"><%= user.posts.count %></span></p>
+  </div>
+  <div class="follow_count">
+    <p>フォロー<span class="ma-l-10"><%= link_to user.follow_users.count, follow_user_path(user) %></span></p>
+  </div>
+  <div class="follower_count">
+    <p>フォロワー<span class="ma-l-10"><%= link_to user.followed_users.count, follower_user_path(user) %></span></p>
+  </div>
+</div>

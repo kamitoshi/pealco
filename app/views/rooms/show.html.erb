@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="message-header">
+        <h1><%= communication_user_name(@room.users) %></h1>
+        <hr>
+      </div>
+      <div id="messages" class="pa-x-50 message-box">
+        <%= render @messages %>
+      </div>
+      <div class="chat-input-box">
+        <hr>
+        <div class="chat-input-form">
+          <input type="text" id="chat_input" class="form-control">
+        </div>
+        <div class="chat-input-btn ma-t-20 center">
+          <input type="submit" id="chat_btn" class="btn btn-primary wid-80">
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>

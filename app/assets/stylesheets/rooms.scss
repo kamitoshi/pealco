@@ -1,0 +1,27 @@
+// Place all the styles related to the Rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.message-header {
+  width: 540px;
+  position: fixed;
+  padding-top: 20px;
+  top: 0;
+  text-align: right;
+  background-color: white;
+  z-index: 1000;
+}
+
+.message-box {
+  min-width: 540px;
+  padding: 0 50px;
+  margin: 50px 0 150px 0;
+}
+
+.chat-input-box {
+  width: 540px;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 20px;
+  background-color: white;
+}
