@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   layout "no_footer"
+  before_action :authenticate_user!
 
   def show
     @room = Room.find(params[:id])
