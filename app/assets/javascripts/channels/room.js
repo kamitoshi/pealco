@@ -3,7 +3,7 @@ var room_id = window.location.href.split("/").pop();
 App.room = App.cable.subscriptions.create(
   {
     channel: "RoomChannel",
-    room_id: `${room_id}`,
+    room_id: room_id,
   },
   {
     connected: function () {
