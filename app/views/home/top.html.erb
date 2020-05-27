@@ -1,2 +1,26 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<div class="container-fluid">
+  <div class="row back-main">
+    <div class="top-box">
+      <div class="col-6 offset-6">
+        <div class="logo">
+          <%= image_tag "pealco_logo.png", alt: "pealco", size: "400x250" %>
+        </div>
+        <div class="top-box-content">
+          <h2>ようこそ！PeAlcoへ！</h2>
+          <p>
+            今日帰った後の楽しみに、<br>
+            みんながどんな組み合わせで飲んでるか<br>
+            覗きにいきませんか？
+          </p>
+        </div>
+        <div class="top-box-list ma-t-50">
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item flex-fill top-list-item"><%= link_to "About", about_path %></li>
+            <li class="list-group-item flex-fill top-list-item"><%= link_to "Sign up", new_user_registration_path %></li>
+            <li class="list-group-item flex-fill top-list-item"><%= link_to "Log in", new_user_session_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </>
+</div>

@@ -1,2 +1,77 @@
-<h1>Home#about</h1>
-<p>Find me in app/views/home/about.html.erb</p>
+<div class="container">
+  <div class="row about-header">
+    <div class="about-header-title">
+    </div>
+    <div class="main-image-box"></div>
+  </div>
+  <div class="about-header-menu">
+    <div class="signup-btn">
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %><br>
+    </div>
+    <div class="signin-btn">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+    </div>
+  </div>
+  <div class="row about-main-content ma-t-50">
+    <div class="col-4">
+      <div class="about-content-item">
+        <div class="content-item-left">
+          <div class="content-image">
+            <%= image_tag "haikara.jpg" %>
+          </div>
+          <div class="content-title center pa-t-10">
+            <h3>『酒』x『料理』</h3>
+          </div>
+          <hr>
+          <div class="content-text">
+            <p>
+              投稿される様々な酒と料理の組み合わせ。定番のメニューから意外な組み合わせまで様々な投稿があります。<br>
+              仕事の合間に検索して、帰った後の楽しみを作るお手伝いを。<br>
+              自分で投稿して、自分オリジナルの組み合わせを発信しよう！！
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="about-content-item">
+        <div class="content-item-center">
+          <div class="content-image">
+            <%= image_tag "comunication.jpg" %>
+          </div>
+          <div class="content-title center pa-t-10">
+            <h3>飲み友</h3>
+          </div>
+          <hr>
+          <div class="content-text">
+            <p>
+              近くの友達も遠方の友達も一緒に気軽に飲める今流行りのオンライン飲み会！<br>
+              実は、新しい飲み友を探すのにもうってつけ。気に入った投稿をお気に入り登録したり、コメントを残したり、DMを送ることもできます。<br>
+              これを機に、新しい飲み友を新しい探し方で見つけてみませんか？
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="about-content-item">
+        <div class="content-item-right">
+          <div class="content-image">
+            <%= image_tag "schedule.jpg" %>
+          </div>
+          <div class="content-title center pa-t-10">
+            <h3>スケジューリング</h3>
+          </div>
+          <hr>
+          <div class="content-text">
+            <p>
+              オンライン飲み会は、お店の予約がなくいく必要もないため予定を忘れがち。<br>
+              PeAlcoでは、カレンダーの機能がついているので予定を管理できちゃいます。<br>
+              オンラインに限らず、飲み会の予定はこのアプリ一本で管理しちゃいましょう。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
