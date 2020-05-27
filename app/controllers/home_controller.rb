@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout "no_footer", only:[:top]
+
   before_action :signed_user_redirect
 
   def top
