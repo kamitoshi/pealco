@@ -1,0 +1,22 @@
+<% if posts.any? %>
+  <% posts.each do |post| %>     
+    <div class="post-box pa-20 ma-y-20 box">
+      <div class="post-box-title">
+        <h4 class="center"><%= link_to post.title, post_path(post) %></h4>
+      </div>
+      <hr>
+      <div class="post-box-alccategory dis-ib">
+        <p>お酒：<%= post.alc_category.name %></p>
+      </div>
+      <div class="post-box-menucategory dis-ib ma-l-50">
+        <p>ジャンル：<%= post.menu_category.name %></p>
+      </div>
+      <div class="post-box-info ma-t-10">
+        <span>投稿者：<%= post.user.name %></span><br>
+        <span>投稿日時：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p class="ma-t-30 center">投稿はありません</p>
+<% end %>

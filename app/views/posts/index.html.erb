@@ -6,32 +6,9 @@
     <div class="col-8 ma-t-30">
       <div class="title pa-20 center">
         <h１ class="font-30">投稿一覧</h１>
+        <h2 class="font-20"></h2>
       </div>
-      <% if @posts.any? %>
-        <% @posts.each do |post| %>     
-          <div class="post-box border pa-20 ma-y-20">
-            <div class="post-box-title">
-              <h4 class="center"><%= link_to post.title, post_path(post) %></h4>
-            </div>
-            <hr>
-            <div class="post-box-image center">
-              <%= image_tag post.alc_category.image.thumb300.to_s %>  x  <%= image_tag post.image.thumb300.to_s %>
-            </div>
-            <div class="post-box-category">
-              <p>ジャンル：<%= post.menu_category.name %></p>
-            </div>
-            <div class="post-box-content">
-              <%= post.content %>
-            </div>
-            <div class="post-box-info ma-t-10 dis-ib">
-              <span>投稿者：<%= post.user.name %></span><br>
-              <span>投稿日時：<%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <p class="ma-t-30 center">投稿はありません</p>
-      <% end %>
+      <%= render "posts/posts_index", posts: @posts %>
     </div>
   </div>
 </div>

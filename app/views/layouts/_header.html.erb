@@ -3,35 +3,31 @@
     <a href="/"><%= image_tag "pealco_logo.png", size:"200x100" %></a>
     <nav class="navbar navbar-dark bg-dark">
       <% if user_signed_in? %>
-        <ul class="nav">
+        <ul class="nav font-20">
+          <li class="nav-item"><%= user_sumnail_image(current_user) %></li>
           <li class="nav-item"><%= link_to current_user.name, user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
-          <li class="nav-item dropdown show">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              投稿<b class="caret"></b>
-            </a>
-            <div class="dropdown-menu">
-              <a><%= link_to "投稿一覧", posts_path, class: "dropdown-item" %></a>
-              <a><%= link_to "新規投稿", new_post_path, class: "dropdown-item" %></a>
-            </div>
+          <li class="nav-item pop-up ma-x-20">
+            <%= link_to  users_path, class: "nav-link" do %>
+              <i class="fas fa-users font-30"></i>
+            <% end %>
+            <span class="pop">ユーザー一覧</span>
           </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              マイアカウント<b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "プロフィール", current_user, class: "dropdown-item" %></li>
-              <li><%= link_to "プロフィール編集", edit_user_path(current_user), class: "dropdown-item" %></li>
-              <li class="dropdown-divider"></li>
-              <li>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-              </li>
-            </ul>
+          <li class="nav-item pop-up ma-x-20">
+            <%= link_to  posts_path, class: "nav-link" do %>
+              <i class="fas fa-book font-30"></i>
+            <% end %>
+            <span class="pop">投稿一覧</span>
+          </li>
+          <li class="nav-item pop-up ma-x-20">
+            <%= link_to  destroy_user_session_path, method: :delete, class: "nav-link" do %>
+              <i class="fas fa-sign-out-alt font-30"></i>
+            <% end %>
+            <span class="pop">ログアウト</span>
           </li>
         </ul>
       <% else %>
         <ul class="nav">
-          <li class="nav-item"><%= link_to "新規", new_user_registration_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
         </ul>
       <% end %>
