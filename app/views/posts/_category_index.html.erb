@@ -1,15 +1,14 @@
 <div class="category wid-70">
-  <div class="category-title center">
+  <div id="title" class="category-title">
     <h4>ジャンル</h4>
   </div>
-  <div class="category-list-box">
-    <ul class="list-group list-group-flush">
-      <% @alc_categories.each do |category| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to category.name, posts_path(alc_category_id: category.id) %>
-          <span class="badge badge-primary badge-pill">1</span>
-        </li>
-      <% end %>
-    </ul>
+  <div class="category-list-box box">
+    <% @alc_categories.each do |category| %>
+      <div class="ma-b-20 dis-flex-box">
+        <div class="dis-ib"><%= link_to category.name, posts_path(alc_category_id: category.id) %></div>
+        <div class="badge badge-primary badge-pill"><%= category.posts.count %></div>
+      </div>
+      <hr>
+    <% end %>
   </div>
 </div>

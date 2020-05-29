@@ -1,79 +1,83 @@
-<div class="profile-image-box pa-20 center">
-  <%= user_info_image(user) %>
-</div>
-<table class="table borderless">
-  <tbody>
-    <tr>
-      <th scope="row" width="40%">ニックネーム</th>
-      <td><%= user.name %></td>
-    </tr>
-    <tr>
-      <th scope="row">好きなジャンル</th>
-      <td><%= favorite_alc_name(user) %></td>
-    </tr>
-    <tr>
-      <th scope="row">自己紹介文</th>
-      <td></td>
-    </tr>
-    <tr>
-      <td style="border-top: 0;" colspan="2"><%= simple_format(user.introduction) %></td>
-    </tr>
-  </tbody>
-</table>
-<table class="table borderless ma-t-20">
-  <tbody>
-    <tr>
-      <th scope="row">投稿</th>
-      <td><%= link_to user.posts.count, posts_path(user_id: user.id) %></td>
-    </tr>
-    <tr>
-      <th scope="row">フォロー</th>
-      <td><%= link_to user.follow_users.count, follow_user_path(user) %></td>
-    </tr>
-    <tr>
-      <th scope="row">フォロワー</th>
-      <td><%= link_to user.followed_users.count, follower_user_path(user) %></td>
-    </tr>
-  </tbody>
-</table>
-<div class="center wid-70 ma-a">
-  <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
-</div>
-<div class="center wid-70 ma-a  ma-t-20">
-  <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
-</div>
-<div class="center ma-t-30">
-  <h4>本日の予定</h4>
-</div>
-<div class="today-schedule">
-  <ul class="list-group list-group-flush">
-    <% if user.schedules.any? %>
-      <% user.schedules.each do |schedule| %>
-        <% if schedule.start_date.to_date == Date.today %>
-          <li class="ma-l-50"><%= schedule.title %></li>
+<div class="info-box box">
+  <div class="profile-image-box pa-20 center">
+    <%= user_info_image(user) %>
+  </div>
+  <table class="table borderless">
+    <tbody>
+      <tr>
+        <th scope="row" width="40%">ニックネーム</th>
+        <td><%= user.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">好きなジャンル</th>
+        <td><%= favorite_alc_name(user) %></td>
+      </tr>
+      <tr>
+        <th scope="row">自己紹介文</th>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="border-top: 0;" colspan="2"><%= simple_format(user.introduction) %></td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table borderless ma-t-20">
+    <tbody>
+      <tr>
+        <th scope="row">投稿</th>
+        <td><%= link_to user.posts.count, posts_path(user_id: user.id) %></td>
+      </tr>
+      <tr>
+        <th scope="row">フォロー</th>
+        <td><%= link_to user.follow_users.count, follow_user_path(user) %></td>
+      </tr>
+      <tr>
+        <th scope="row">フォロワー</th>
+        <td><%= link_to user.followed_users.count, follower_user_path(user) %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="center wid-70 ma-a">
+    <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
+  </div>
+  <% if user == current_user %>
+    <div class="center wid-70 ma-a  ma-t-20">
+      <%= link_to "プロフィール編集", edit_user_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
+    </div>
+    <div class="center ma-t-30">
+      <h4>本日の予定</h4>
+    </div>
+    <div class="today-schedule">
+      <ul class="list-group list-group-flush">
+        <% if user.schedules.any? %>
+          <% user.schedules.each do |schedule| %>
+            <% if schedule.start_date.to_date == Date.today %>
+              <li class="ma-l-50"><%= schedule.title %></li>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p>本日の予定はありません</p>
         <% end %>
-      <% end %>
-    <% else %>
-      <p>本日の予定はありません</p>
-    <% end %>
-  </ul>
-</div>
-<div class="center wid-70 ma-a ma-t-20">
-  <%= link_to "スケジュール確認", schedules_path, class:"btn btn-outline-primary btn-lg wid-100" %>
-</div>
-<hr>
-<div class="chat-rooms">
-  <div class="chat-rooms-title center ma-t-30">
-    <h4>チャット一覧</h4>
-  </div>
-  <div class="chat-index-box">
-    <ul class="list-group list-group-flush">
-      <% user.rooms.each do |room| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to communication_user_name(room.users), user_rooms_path(communication_user(room.users)), method: :post, class:"center" %>
-        </li>
-      <% end %>
-      <hr>
-    </ul>
-  </div>
+      </ul>
+    </div>
+    <div class="center wid-70 ma-a ma-t-20">
+      <%= link_to "スケジュール確認", schedules_path, class:"btn btn-outline-primary btn-lg wid-100" %>
+    </div>
+    <hr>
+    <div class="chat-rooms">
+      <div class="chat-rooms-title center ma-t-30">
+        <h4>チャット一覧</h4>
+      </div>
+      <div class="chat-index-box">
+        <ul class="list-group list-group-flush">
+          <% user.rooms.each do |room| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= link_to communication_user_name(room.users), user_rooms_path(communication_user(room.users)), method: :post, class:"center" %>
+            </li>
+          <% end %>
+          <hr>
+        </ul>
+      </div>
+    </div>
+  <% end %>
 </div>
