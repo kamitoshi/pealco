@@ -4,11 +4,16 @@
       <%= render "posts/category_index" %>
     </div>
     <div class="col-8 ma-t-30">
-      <div class="title pa-20 center">
+      <div id="title" class="title">
         <h１ class="font-30">投稿一覧</h１>
-        <h2 class="font-20"></h2>
       </div>
-      <%= render "posts/posts_index", posts: @posts %>
+      <% if @posts.any? %>
+        <% @posts.each do |post| %>  
+          <%= render "posts/posts_index", post: post %>
+        <% end %>
+      <% else %>
+        <p class="ma-t-30 center">投稿はありません</p>
+      <% end %>
     </div>
   </div>
 </div>

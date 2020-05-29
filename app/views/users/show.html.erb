@@ -7,14 +7,14 @@
         <%= render "users/user_info", user: current_user %>
       </div>
       <div class="col-lg-8 ma-t-30">
-        <div class="title pa-20 center">
+        <div id="title" class="title">
           <h１ class="font-30"><%= @user.name %>さんの詳細</h１>
         </div>
         <div class="user-box box">
           <div class="profile-image-box pa-20 center">
             <%= user_info_image(@user) %>
           </div>
-          <div class="message-link right">
+          <div class="message-link right ma-b-20">
             <%= link_to "メッセージを送る", user_rooms_path(@user),method: :post, class: "btn btn-success" %>
           </div>
           <div id="follow_info">
@@ -50,8 +50,14 @@
         <div class="title pa-20 center">
           <h１ class="font-30">投稿一覧</h１>
         </div>
-        <div class="comment-btn">
-          <%= render "posts/posts_index", posts: @user.posts %>
+        <div class="user-posts">
+          <% if @user.posts.any? %>
+            <% @user.posts.each do |user_post| %>
+              <%= render "posts/posts_index", post: user_post %>
+            <% end %>
+          <% else %>
+            <p class="ma-t-30 center">投稿はありません</p>
+          <% end %>
         </div>
       </div>
     <% end %>

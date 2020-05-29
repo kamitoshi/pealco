@@ -1,36 +1,38 @@
-<div class="title pa-20 center">
+<div id="title" class="title pa-20">
   <h１ class="font-30"><%= title %></h１>
 </div>
-<table class="table">
-  <% if users.any? %>
-    <thead>
-      <tr class="active">
-        <th width="10%"></th>
-        <th width="20%">ニックネーム</th>
-        <th width="20%">好きなジャンル</th>
-        <th width="20%">投稿数</th>
-        <th width="10%"></th>
-        <th width="20%"></th>
-      </tr>
-    </thead>
-    <% users.each do |user| %>
-      <tbody>
-        <tr>
-          <td>
-            <%= user_sumnail_image(user) %>
-          </td>
-          <td><%= link_to user.name, user_path(user) %></td>
-          <td><%= favorite_alc_name(user) %></td>
-          <td><%= link_to user.posts.count, posts_path %></td>
-          <td></td>
-          <td><%= follow_status(user) %>
+<div class="box">
+  <table class="table">
+    <% if users.any? %>
+      <thead>
+        <tr class="active">
+          <th width="10%"></th>
+          <th width="20%">ニックネーム</th>
+          <th width="20%">好きなジャンル</th>
+          <th width="20%">投稿数</th>
+          <th width="10%"></th>
+          <th width="20%"></th>
         </tr>
-      </tbody>
+      </thead>
+      <% users.each do |user| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= user_sumnail_image(user) %>
+            </td>
+            <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= favorite_alc_name(user) %></td>
+            <td><%= link_to user.posts.count, posts_path %></td>
+            <td></td>
+            <td><%= follow_status(user) %>
+          </tr>
+        </tbody>
+      <% end %>
+    <% else %>
+      <p class="ma-t-30 center">該当しませんでした</p>
     <% end %>
-  <% else %>
-    <p class="ma-t-30 center">該当しませんでした</p>
-  <% end %>
-</table>
-<div class="page wid-60 ma-a">
-  <%= paginate users %>
+  </table>
+  <div class="page wid-60 ma-a">
+    <%= paginate users %>
+  </div>
 </div>

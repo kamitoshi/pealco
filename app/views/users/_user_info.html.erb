@@ -1,11 +1,4 @@
 <div class="info-box box">
-  <div class="title pa-20 center">
-    <% if user == current_user %>
-      <h１ class="font-30">My Info</h１>
-    <% else %>
-      <h１ class="font-30"><%= user.name %></h１>
-    <% end %>
-  </div>
   <div class="profile-image-box pa-20 center">
     <%= user_info_image(user) %>
   </div>
