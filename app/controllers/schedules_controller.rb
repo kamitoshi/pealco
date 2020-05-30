@@ -18,7 +18,7 @@ class SchedulesController < ApplicationController
     if @schedule.save
       redirect_to schedules_path
     else
-      render :new
+      redirect_to schedules_path
     end
   end
 

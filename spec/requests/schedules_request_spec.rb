@@ -2,32 +2,24 @@ require 'rails_helper'
 
 RSpec.describe "Schedules", type: :request do
 
-  describe "GET /index" do
-    it "returns http success" do
-      get "/schedules/index"
-      expect(response).to have_http_status(:success)
-    end
-  end
+  let(:user) {create(:user)}
+  let(:other_user) {create(:other_user)}
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/schedules/show"
-      expect(response).to have_http_status(:success)
-    end
-  end
+  describe "スケジュール" do
 
-  describe "GET /new" do
-    it "returns http success" do
-      get "/schedules/new"
-      expect(response).to have_http_status(:success)
+    before do
+      sign_in(user)
     end
-  end
 
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/schedules/edit"
-      expect(response).to have_http_status(:success)
+    context "スケジュールを登録" do
+      it "スケジュールを設定する" do
+        visit new_schedule_path(date: Date.today)
+        fill_in 'schedule_title', with:"test schedule"
+        pending
+        expect(click_button "登録").to change{Schedule.count}.by(1)
+      end
     end
+
   end
 
 end

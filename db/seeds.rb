@@ -32,14 +32,27 @@ MenuCategory.create!(
 )
 
 # users #
-5.times do |n|
+100.times do |n|
   User.create!(
-    name: "test#{n + 1}",
+    name: Faker::Name.name,
     email: "test#{n + 1}@mail.com",
     password: "test#{(n+1).to_s+(n+1).to_s}",
     password_confirmation: "test#{(n+1).to_s+(n+1).to_s}",
-    # image: open("#{Rails.root}/app/assets/images/users/no_image.png"),
-    alc_category_id: n+1
+    alc_category_id: 1
+  )
+end
+
+# posts #
+100.times do |n|
+  Post.create!(
+    title: "menu-title",
+    menu_name: Faker::Food.ingredient,
+    content: "説明文が入ります説明文が入ります説明文が入ります説明文が入ります説明文が入ります説明文が入ります説明文が入ります説明文が入ります説明文が入ります説明文が入ります",
+    image: File.open("#{Rails.root}/public/alc/other.jpg"),
+    user_id: n+1,
+    alc_category_id: 1,
+    menu_category_id: 1
+
   )
 end
 

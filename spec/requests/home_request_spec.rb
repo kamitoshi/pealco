@@ -34,7 +34,7 @@ RSpec.describe "Homes", type: :request do
       end
       it "マイページに遷移" do
         get root_path
-        expect(response).to redirect_to user_url(@user)
+        expect(response).to redirect_to posts_path
       end
     end
 
@@ -45,7 +45,7 @@ RSpec.describe "Homes", type: :request do
       end
       it "マイページに遷移" do
         get about_path
-        expect(response).to redirect_to user_url(@user)
+        expect(response).to redirect_to posts_path
       end
     end
 

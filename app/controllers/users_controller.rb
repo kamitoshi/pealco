@@ -3,34 +3,45 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :follower]
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(25)
   end
 
   def follow
+    @users = @user.follow_users.page(params[:page]).per(25)
   end
 
   def follower
+    @users = @user.followed_users.page(params[:page]).per(25)
   end
 
   def show
   end
 
   def edit
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to user_path(@user)
+    if @user == current_user
+      if @user.update(user_params)
+        redirect_to user_path(@user)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to user_path(current_user)
     end
   end
 
   def destroy
-    if @user.destroy
-      redirect_to users_path
+    if @user == current_user
+      if @user.destroy
+        redirect_to root_path
+      else
+        redirect_to user_path(@user)
+      end
     else
-      render :edit
+      redirect_to user_path(current_user)
     end
   end
 

@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout "no_footer", only:[:top]
+
   before_action :signed_user_redirect
 
   def top
@@ -10,7 +12,7 @@ class HomeController < ApplicationController
   private
   def signed_user_redirect
     if user_signed_in?
-      redirect_to user_path(current_user)
+      redirect_to posts_path
     end
   end
 end

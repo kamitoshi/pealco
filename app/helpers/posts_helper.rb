@@ -16,4 +16,13 @@ module PostsHelper
     end
   end
 
+  # ジャンル検索のタイトル表示の変更用
+  def category_name(category)
+    if category.nil?
+      全ジャンル
+    else
+      category.name
+    end
+  end
+
 end

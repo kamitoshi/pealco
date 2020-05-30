@@ -1,0 +1,63 @@
+<div class="col-lg-8 offset-2 ma-t-30">
+  <div id="title" class="title pa-20">
+    <h１ class="font-30">マイページ</h１>
+  </div>
+  <div class="user-box box">
+    <div class="profile-image-box pa-20 center">
+      <%= user_info_image(@user) %>
+    </div>
+    <div id="follow_info">
+      <%= render "follows/follow_info", user: @user %>
+    </div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td width="15%"></td>
+          <th scope="row" width="35%">ニックネーム</th>
+          <td width="50%"><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">好きなお酒</th>
+          <td><%= favorite_alc_name(@user) %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">自己紹介文</th>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="border-top: 0;"></td>
+          <td style="border-top: 0;" colspan="2"><div class="ma-r-30"><%= simple_format(@user.introduction) %></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-6 ma-t-20">
+      <div class="title pa-t-20 center">
+        <h１ class="font-30">MENU</h１>
+      </div>
+      <div class="box">
+        <div class="center wid-70 ma-a">
+          <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
+        </div>
+        <div class="center wid-70 ma-a ma-t-20">
+          <%= link_to "お気に入り一覧", user_likes_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="title pa-t-20 center">
+    <h１ class="font-30">投稿一覧</h１>
+  </div>
+  <div class="user-posts">
+    <% if @user.posts.any? %>
+      <% @user.posts.each do |user_post| %>
+        <%= render "posts/posts_index", post: user_post %>
+      <% end %>
+    <% else %>
+      <p class="ma-t-30 center">投稿はありません</p>
+    <% end %>
+  </div>
+</div>

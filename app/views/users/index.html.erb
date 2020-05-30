@@ -3,42 +3,10 @@
     <div class="col-lg-4 ma-t-50">
       <%= render "users/user_info", user: current_user %>
     </div>
-    <div class="col-lg-8 ma-t-30">
-      <div class="title pa-20 center">
-        <h１ class="font-30">ユーザー一覧</h１>
+    <div class="col-lg-8 ma-t-50">
+      <div class="users-box">
+        <%= render partial: "users/user_index", locals: {users: @users, title: "ユーザー一覧"} %>
       </div>
-
-      <table class="table">
-        <% if @users.any? %>
-          <thead>
-            <tr class="active">
-              <th width="10%"></th>
-              <th width="20%">ニックネーム</th>
-              <th width="20%">好きなジャンル</th>
-              <th width="20%">投稿数</th>
-              <th width="15%"></th>
-              <th width="15%"></th>
-            </tr>
-          </thead>
-          <% @users.each do |user| %>
-            <tbody>
-              <tr>
-                <td>
-                  <%= user_sumnail_image(user) %>
-                </td>
-                <td><%= link_to user.name, user_path(user) %></td>
-                <td><%= favorite_alc_name(user) %></td>
-                <td><%= link_to user.posts.count, posts_path %></td>
-                <td></td>
-                <td><%= follow_status(user) %>
-              </tr>
-            </tbody>
-          <% end %>
-        <% else %>
-          <p class="ma-t-30 center">該当しませんでした</p>
-        <% end %>
-      </table>	
-      <%# add paginate %>
     </div>
   </div>
 </div>

@@ -1,3 +1,23 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.back-sign {
+  height: 100vh;
+  background-image: url("bg/top.jpg");
+  background-size: cover;
+  background-position: top;
+}
+
+.sign-up-form {
+  background-color: white;
+  margin: 30px 150px;
+  border-radius: 30px;
+  opacity: 0.9;
+}
+.sign-in-form {
+  background-color: white;
+  margin: 30px 150px;
+  border-radius: 30px;
+  opacity: 0.9;
+}
