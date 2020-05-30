@@ -8,3 +8,13 @@ FactoryBot.define do
     association :menu_category
   end
 end
+FactoryBot.define do
+  factory :other_post do
+    title { "唐揚げ" }
+    menu_name { "唐揚げ" }
+    content { "美味しいですよね" }
+    association :other_user, factory: :other_user
+    association :alc_category
+    association :menu_category
+  end
+end

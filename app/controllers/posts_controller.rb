@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   before_action :category_index
 
   def index
-    @posts = Post.all
+    if params[:alc_category_id]
+      @posts = Post.where(alc_category_id: params[:alc_category_id]).page(params[:page]).per(25)
+    else
+      @posts = Post.page(params[:page]).per(25)
+    end
   end
 
   def show
@@ -28,19 +32,31 @@ class PostsController < ApplicationController
   end
 
   def edit
+    redirect_to posts_path unless @post.user == current_user
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to post_path(@post)
+    if @post.user == current_user
+      if @post.update(post_params)
+        redirect_to post_path(@post)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to posts_path
     end
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path
+    if @post.user == current_user
+      if @post.destroy
+        redirect_to posts_path
+      else
+        redirect_to posts_path
+      end
+    else
+      redirect_to posts_path
+    end
   end
 
 
