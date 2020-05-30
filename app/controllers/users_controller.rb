@@ -18,21 +18,30 @@ class UsersController < ApplicationController
   end
 
   def edit
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to user_path(@user)
+    if @user == current_user
+      if @user.update(user_params)
+        redirect_to user_path(@user)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to user_path(current_user)
     end
   end
 
   def destroy
-    if @user.destroy
-      redirect_to users_path
+    if @user == current_user
+      if @user.destroy
+        redirect_to root_path
+      else
+        redirect_to user_path(@user)
+      end
     else
-      render :edit
+      redirect_to user_path(current_user)
     end
   end
 

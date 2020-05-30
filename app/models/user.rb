@@ -50,5 +50,4 @@ class User < ApplicationRecord
   def user_room(room)
     self.user_rooms.find_or_create_by(room_id: room.id)
   end
-
 end
