@@ -5,8 +5,6 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
-    config.storage :fog
-    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pealco-image'
     CarrierWave.configure do |config|
       config.fog_credentials = {
         # Amazon S3用の設定
@@ -16,6 +14,8 @@ class ImageUploader < CarrierWave::Uploader::Base
         :aws_secret_access_key => ENV['S3_SECRET_KEY']
       }
       config.fog_directory     =  ENV['S3_BUCKET']
+      config.storage :fog
+      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pealco-image'
     end
   else
     storage :file
