@@ -53,6 +53,7 @@ module UsersHelper
     end
   end
 
+  # 本日のスケジュールをとってくる
   def today_schedule(schedule)
     if schedule.start_date.to_date == Date.today
       schedule.title

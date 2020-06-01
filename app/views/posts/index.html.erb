@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-4 ma-t-50">
+    <div class="col-lg-4 ma-t-50">
       <%= render "posts/category_index" %>
     </div>
-    <div class="col-8 ma-t-30">
+    <div class="col-lg-8 ma-t-30">
       <div id="title" class="title">
         <h１ class="font-30">投稿一覧</h１>
       </div>
@@ -14,6 +14,9 @@
       <% else %>
         <p class="ma-t-30 center">投稿はありません</p>
       <% end %>
+      <div class="page wid-60 ma-a">
+        <%= paginate @posts %>
+      </div>
     </div>
   </div>
 </div>

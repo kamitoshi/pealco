@@ -17,6 +17,9 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+* {
+  box-sizing: border-box;
+}
 .body {
   padding-top: 7.5rem;
   min-height: 100vh;
@@ -116,4 +119,80 @@ footer {
   box-shadow: 0px 0px 0px 5px #dfefff;
   border: dashed 2px white;
   padding: 0.2em 0.5em;
+}
+
+#sub-title {
+  height: 40px;
+  position: absolute;
+  top: 10px;
+  left: 4px;
+  padding: 6px 40px 0;
+  background-color: #5bc0de;
+  letter-spacing: 0.15em;
+  font-size: 13px;
+  font-weight: bold;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+#sub-title:before {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  content: "";
+  border: 5px solid transparent;
+  border-top-color: #1f7e9a;
+  border-right-color: #1f7e9a;
+}
+.new-post-btn {
+  position: fixed;
+}
+
+.ribbon-wrapper {
+  position: relative;
+}
+.ribbon {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 30px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin: 0;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: white;
+  background: #ff7470;
+  box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.1);
+}
+.ribbon:before {
+  position: absolute;
+  content: "";
+  top: -8px;
+  left: -7px;
+  border: none;
+  height: 38px;
+  width: 7px;
+  background: #ff7470;
+  border-radius: 5px 0 0 5px;
+}
+.ribbon:after {
+  position: absolute;
+  content: "";
+  top: -7px;
+  left: -5px;
+  border: none;
+  height: 7px;
+  width: 5px;
+  background: #b25552;
+  border-radius: 5px 0 0 5px;
+}
+
+// modal
+.alc_category_tag {
+  text-align: center;
+  width: 80%;
+  margin: 20px auto;
 }

@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="row">
-    <div class="schedule-title ma-b-50 ma-t-30">
-      <h1>スケジュールカレンダー</h1>
+  <div class="row ma-t-50">
+    <div id="title" class="schedule-title pa-20">
+      <h1 class="font-30">スケジュールカレンダー</h1>
     </div>
-    <div class="col-8 box">
+    <div class="col-lg-8 box">
       <%= month_calendar(attribute: :starts_at) do |date| %>
           <div class="schedule-date">
             <%= link_to date.strftime("%-m/%-d"), new_schedule_path(date: date) %>
@@ -17,7 +17,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-4 ma-t-30">
+    <div class="col-lg-4 ma-t-30">
       <table class="table">
         <thead class="thead-light">
           <tr>

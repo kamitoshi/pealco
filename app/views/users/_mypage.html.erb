@@ -35,16 +35,31 @@
   </div>
   <div class="row">
     <div class="col-6 ma-t-20">
-      <div class="title pa-t-20 center">
-        <h１ class="font-30">MENU</h１>
-      </div>
-      <div class="box">
-        <div class="center wid-70 ma-a">
-          <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
+      <div class="box ma-t-30" style="height:200px">
+        <div id="sub-title" class="title center">
+          <h１ class="font-20">MENU</h１>
         </div>
         <div class="center wid-70 ma-a ma-t-20">
           <%= link_to "お気に入り一覧", user_likes_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
         </div>
+        <div class="center wid-70 ma-a ma-t-30">
+          <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 ma-t-20">
+      <div class="box ma-t-30 scroll-box" style="height:200px">
+        <div id="sub-title" class="title center">
+          <h１ class="font-20">チャット</h１>
+        </div>
+        <ul class="list-group list-group-flush ma-t-20">
+          <% @user.rooms.each do |room| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= link_to communication_user_name(room.users), user_rooms_path(communication_user(room.users)), method: :post, class:"center" %>
+            </li>
+          <% end %>
+          <hr>
+        </ul>
       </div>
     </div>
   </div>
@@ -53,8 +68,20 @@
   </div>
   <div class="user-posts">
     <% if @user.posts.any? %>
-      <% @user.posts.each do |user_post| %>
+      <% @user.posts.reverse.first(2).each do |user_post| %>
         <%= render "posts/posts_index", post: user_post %>
+      <% end %>
+      <% if @user.posts.length > 2 %>
+        <% @user.posts.reverse[2..-1].each do |user_post| %>
+          <div class="collapse" id="collapsePostsIndex">
+            <%= render "posts/posts_index", post: user_post %>
+          </div>
+        <% end %>
+        <p class="center">
+          <a data-toggle="collapse" href="#collapsePostsIndex" role="button" aria-expanded="false" aria-controls="collapseExample">
+            もっと見る
+          </a>
+        </p>
       <% end %>
     <% else %>
       <p class="ma-t-30 center">投稿はありません</p>
