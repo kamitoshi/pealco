@@ -16,15 +16,15 @@
       <%= f.label :menu_name, "メニュー名" %>
       <%= f.text_field :menu_name, class: "form-control" %>
     </div>
-
+    
     <div class="form-group">
       <%= f.label :alc_category, "お酒ジャンル" %><br>
-      <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name %>
+      <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, {prompt: ""}, {class: "form-control"} %>
     </div>
 
     <div class="form-group">
       <%= f.label :menu_category, "投稿ジャンル" %><br>
-      <%= f.collection_select :menu_category_id, MenuCategory.all, :id, :name %>
+      <%= f.collection_select :menu_category_id, MenuCategory.all, :id, :name, {prompt: ""}, {class: "form-control"} %>
     </div>
 
     <div class="form-group">

@@ -1,6 +1,6 @@
 <div class="dis-flex-box wid-50 ma-a">
   <div class="post_count">
-    <p>投稿<span class="ma-l-10"><%= user.posts.count %></span></p>
+    <p>投稿<span class="ma-l-10"><%= link_to user.posts.count, posts_path(user_id: user.id) %></span></p>
   </div>
   <div class="follow_count">
     <p>フォロー<span class="ma-l-10"><%= link_to user.follow_users.count, follow_user_path(user) %></span></p>

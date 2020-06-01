@@ -22,7 +22,7 @@
             </td>
             <td><%= link_to user.name, user_path(user) %></td>
             <td><%= favorite_alc_name(user) %></td>
-            <td><%= link_to user.posts.count, posts_path %></td>
+            <td><%= link_to user.posts.count, posts_path(user_id: user.id) %></td>
             <td></td>
             <td><%= follow_status(user) %>
           </tr>

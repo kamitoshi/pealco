@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 offset-3">
-      <div class="message-header">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="message-header dis-flex-box border-bottom">
         <h1><%= communication_user_name(@room.users) %></h1>
-        <hr>
+        <h1>
+          <%= link_to :back do %>
+            <i class="fas fa-arrow-circle-left" style="color:#aaa"></i>
+          <% end %>
+        </h1>
       </div>
+      <hr>
       <div id="messages" class="pa-x-50 message-box">
         <%= render @messages %>
       </div>
@@ -20,3 +25,10 @@
     </div>
   </div> 
 </div>
+<script>
+  window.onload = function scrollBottom() {
+    var elementHtml = document.documentElement;
+    var bottom = elementHtml.scrollHeight - elementHtml.clientHeight;
+    window.scroll(0, bottom);
+  }
+</script>

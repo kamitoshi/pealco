@@ -5,10 +5,22 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
-    storage :fog
+    config.storage :fog
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/pealco-image'
+    CarrierWave.configure do |config|
+      config.fog_credentials = {
+        # Amazon S3用の設定
+        :provider              => 'AWS',
+        :region                => ENV['S3_REGION'],
+        :aws_access_key_id     => ENV['S3_ACCESS_KEY'],
+        :aws_secret_access_key => ENV['S3_SECRET_KEY']
+      }
+      config.fog_directory     =  ENV['S3_BUCKET']
+    end
   else
     storage :file
   end
+
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
