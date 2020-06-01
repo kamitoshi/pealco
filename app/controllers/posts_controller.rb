@@ -5,9 +5,11 @@ class PostsController < ApplicationController
 
   def index
     if params[:alc_category_id]
-      @posts = Post.where(alc_category_id: params[:alc_category_id]).page(params[:page]).per(25)
+      @posts = Post.where(alc_category_id: params[:alc_category_id]).order(created_at: :desc).page(params[:page]).per(25)
+    elsif params[:user_id]
+      @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc).page(params[:page]).per(25)
     else
-      @posts = Post.page(params[:page]).per(25)
+      @posts = Post.page(params[:page]).order(created_at: :desc).per(25)
     end
   end
 
@@ -18,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(alc_category_id: params[:alc_category_id])
   end
 
   def create

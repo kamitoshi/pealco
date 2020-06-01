@@ -6,23 +6,20 @@
         <ul class="nav font-20">
           <li class="nav-item"><%= user_sumnail_image(current_user) %></li>
           <li class="nav-item"><%= link_to current_user.name, user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item pop-up ma-x-20">
-            <%= link_to  users_path, class: "nav-link" do %>
+          <li class="nav-item ma-x-20">
+            <a href="/users" data-toggle="tooltip" title="ユーザー一覧" style="color:white">
               <i class="fas fa-users font-30"></i>
-            <% end %>
-            <span class="pop">ユーザー一覧</span>
+            </a>
           </li>
-          <li class="nav-item pop-up ma-x-20">
-            <%= link_to  posts_path, class: "nav-link" do %>
+          <li class="nav-item ma-x-20">
+            <a href="/posts" data-toggle="tooltip" title="投稿一覧" style="color:white">
               <i class="fas fa-book font-30"></i>
-            <% end %>
-            <span class="pop">投稿一覧</span>
+            </a>
           </li>
-          <li class="nav-item pop-up ma-x-20">
-            <%= link_to  destroy_user_session_path, method: :delete, class: "nav-link" do %>
+          <li class="nav-item ma-x-20">
+            <a href="/users/sign_out" data-toggle="tooltip" data-method="delete" title="ログアウト" style="color:white">
               <i class="fas fa-sign-out-alt font-30"></i>
-            <% end %>
-            <span class="pop">ログアウト</span>
+            </a>
           </li>
         </ul>
       <% else %>

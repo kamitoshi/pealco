@@ -18,9 +18,11 @@
             <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
           </div>
 
-          <div class="form-group">
-            <%= f.label :alc_category_id, "好きなお酒" %><br />
-            <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, include_blank: "--選択してください--" %>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <%= f.label :alc_category_id, "好きなお酒", class:"input-group-text" %>
+            </div>
+            <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, include_blank: "--選択してください--", class:"custom-select form-control" %>
           </div>
 
           <div class="form-group">
@@ -31,7 +33,7 @@
           <div class="form-group">
             <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
-            <em>(英数 <%= @minimum_password_length %> 文字以上)</em>
+              <em>(英数 <%= @minimum_password_length %> 文字以上)</em>
             <% end %><br />
             <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
           </div>

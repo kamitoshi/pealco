@@ -12,7 +12,7 @@
 
     <div class="form-group">
       <%= f.label :alc_category, "好きなジャンル" %><br>
-      <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name %>
+      <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, {prompt: ""}, {class: "form-control"} %>
     </div>
 
     <div class="form-group">

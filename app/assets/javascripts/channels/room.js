@@ -18,6 +18,12 @@ App.room = App.cable.subscriptions.create(
       var messages = document.getElementById("messages");
       messages.innerHTML += message;
       // Called when there's incoming data on the websocket for this channel
+      function scrollBottom() {
+        var elementHtml = document.documentElement;
+        var bottom = elementHtml.scrollHeight - elementHtml.clientHeight;
+        window.scroll(0, bottom);
+      }
+      scrollBottom(), 3000;
     },
 
     speak: function (content) {
@@ -27,11 +33,6 @@ App.room = App.cable.subscriptions.create(
 );
 
 document.addEventListener("DOMContentLoaded", function () {
-  // function scrollBottom() {
-  //   var elementHtml = document.documentElement;
-  //   var bottom = elementHtml.scrollHeight - elementHtml.clientHeight;
-  //   window.scroll(0, bottom);
-  // }
   var input = document.getElementById("chat_input");
   var chat_btn = document.getElementById("chat_btn");
   chat_btn.addEventListener("click", function () {
