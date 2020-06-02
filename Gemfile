@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 gem 'carrierwave'
+gem 'fog-aws'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -70,7 +71,6 @@ end
 
 gem 'dotenv-rails'
 group :production do
-  gem 'fog-aws'
   gem 'mysql2'
 end
 
