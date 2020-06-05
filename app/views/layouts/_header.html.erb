@@ -1,33 +1,65 @@
-<header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top opa-9">
-  <div class="container">
-    <a href="/"><%= image_tag "pealco_logo.png", size:"200x100" %></a>
-    <nav class="navbar navbar-dark bg-dark">
-      <% if user_signed_in? %>
-        <ul class="nav font-20">
-          <li class="nav-item"><%= user_sumnail_image(current_user) %></li>
-          <li class="nav-item"><%= link_to current_user.name, user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item ma-x-20">
-            <a href="/users" data-toggle="tooltip" title="ユーザー一覧" style="color:white">
-              <i class="fas fa-users font-30"></i>
-            </a>
-          </li>
-          <li class="nav-item ma-x-20">
-            <a href="/posts" data-toggle="tooltip" title="投稿一覧" style="color:white">
-              <i class="fas fa-book font-30"></i>
-            </a>
-          </li>
-          <li class="nav-item ma-x-20">
-            <a href="/users/sign_out" data-toggle="tooltip" data-method="delete" title="ログアウト" style="color:white">
-              <i class="fas fa-sign-out-alt font-30"></i>
-            </a>
-          </li>
-        </ul>
-      <% else %>
-        <ul class="nav">
-          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
-        </ul>
-      <% end %>
-    </nav>
+<header class="navbar navbar-expand-lg navbar-dark header bg-dark fixed-top opa-9">
+  <div class="container-fluid">
+    <% if user_signed_in? %>
+      <ul class="nav">
+        <li class="nav-item"><%= user_sumnail_image(current_user) %></li>
+        <li class="nav-item">
+          <a href="/users/#{current_user.id}" data-toggle="tooltip" title="マイページ" style="color:white">
+            <%= link_to current_user.name, user_path(current_user), class: "nav-link font-20" %>
+          </a>
+        </li>
+        <li class="nav-item ma-x-20">
+          <div class="new-post-btn" data-toggle="modal tooltip" title="新規投稿" data-target="#AlcCategoryModal" style="color:white">
+            <i class="fas fa-pencil-alt font-30"></i>
+          </div>
+        </li>
+        
+        <%# <li class="nav-item ma-x-20">
+          <a href="/posts" data-toggle="tooltip" title="投稿一覧" style="color:white">
+            <i class="fas fa-book font-40"></i>
+          </a>
+        </li>
+        <li class="nav-item ma-x-20">
+          <a href="/users/sign_out" data-toggle="tooltip" data-method="delete" title="ログアウト" style="color:white">
+            <i class="fas fa-sign-out-alt font-40"></i>
+          </a>
+        </li> %>
+      </ul>
+      <a href="/" class="top-logo dis-ib"><%= image_tag "pealco_logo.png", size:"200x100" %></a>
+      <div id="navArea">
+          <nav class="hidden-nav">
+            <div class="inner">
+              <ul>
+                <li class="pa-y-20"><strong>ユーザーメニュー</strong></li>
+                <li><%= link_to "ユーザー一覧", users_path %></li>
+                <li><%= link_to "マイページ", user_path(current_user) %></li>
+                <li><%= link_to "プロフィール編集", edit_user_path(current_user) %></li>
+                <li><%= link_to "スケジュール管理", schedules_path %></li>
+                <li><%= link_to "フォロー一覧", follow_user_path(current_user) %></li>
+                <li><%= link_to "フォロワー一覧", follower_user_path(current_user) %></li>
+                <li><%= link_to "退会", user_path(current_user), method: :delete, data:{confirm: "本当に退会してもよろしいですか？"} %></li>
+                <li class="pa-y-20"><strong>投稿メニュー</strong></li>
+                <li><%= link_to "投稿一覧", posts_path %></li>
+                <li><%= link_to "My投稿一覧", posts_path(user_id: current_user.id) %></li>
+                <li><%= link_to "Myお気に入り投稿一覧", user_likes_path(current_user) %></li>
+              </ul>
+            </div>
+          </nav>
+          <div class="toggle_btn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div id="mask"></div>
+        </div>
+    <% else %>
+      <ul class="nav">
+        <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+      </ul>
+    <% end %>
   </div>
 </header>
+<div class="flash-message center">
+  <%= render "shared/flash_message" %>
+</div>

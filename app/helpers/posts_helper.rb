@@ -10,9 +10,9 @@ module PostsHelper
 
   def post_show_image(post)
     if post.image.blank?
-      image_tag "no-image.png", :size => "300x200"
+      image_tag "no-image.png", :size => "300x200", id: "img_prev"
     else
-      image_tag post.image.thumb300.to_s
+      image_tag post.image.thumb300.to_s, id: "img_prev"
     end
   end
 

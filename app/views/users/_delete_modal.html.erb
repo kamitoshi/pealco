@@ -1,0 +1,19 @@
+<div class="modal fade" id="UserDeleteModal" tabindex="-1" role="dialog" aria-labelledby="UserDeleteModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="UserDeleteModalLabel">本当に退会しますか？</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>退会すると、今までの投稿やチャットの履歴などが全て消去されます。</p>
+        <div class="alc_category_tag ma-20 center">
+          <%= link_to "退会", user_path(@user), method: :delete, class:"btn btn-danger ma-20" %>
+          <button type="button" class="btn btn-success" data-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

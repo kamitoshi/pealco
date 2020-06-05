@@ -18,17 +18,23 @@ class UsersController < ApplicationController
   end
 
   def edit
-    redirect_to user_path(current_user) unless @user == current_user
+    unless @user == current_user
+      flash[:danger] = "他の人のプロフィールは編集できません"
+      redirect_to users_path
+    end
   end
 
   def update
     if @user == current_user
       if @user.update(user_params)
+        flash[:success] = "編集しました"
         redirect_to user_path(@user)
       else
         render :edit
+        flash.now[:danger] = "編集に失敗しました"
       end
     else
+      flash[:danger] = "編集に失敗しました"
       redirect_to user_path(current_user)
     end
   end
@@ -41,6 +47,7 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
       end
     else
+      flash[:danger] = "他の人を退会させることはできません"
       redirect_to user_path(current_user)
     end
   end

@@ -1,11 +1,12 @@
 <div class="container-fluid back-sign">
   <div class="row">
-    <div class="col-4 sign-in-form">
+    <div class="col-lg-4 sign-in-form">
       <div class="title pa-30 center">
         <h1>L o g i n</h1>
       </div>
       <div class="form-box">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= render "shared/form_error_message", resource: resource %>
           <div class="form-group">
             <%= f.label :email, "メールアドレス" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>

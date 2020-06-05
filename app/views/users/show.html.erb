@@ -3,10 +3,7 @@
     <% if @user == current_user %>
       <%= render "users/mypage" %>
     <% else %>
-      <div class="col-lg-4 ma-t-50">
-        <%= render "users/user_info", user: current_user %>
-      </div>
-      <div class="col-lg-8 ma-t-30">
+      <div class="col-lg-8 offset-lg-2 ma-t-30">
         <div id="title" class="title">
           <h１ class="font-30"><%= @user.name %>さんの詳細</h１>
         </div>
@@ -19,6 +16,9 @@
           </div>
           <div id="follow_info">
             <%= render "follows/follow_info", user: @user %>
+          </div>
+          <div id="follow_toggle" class="right ma-b-10">
+            <%= render "follows/follow_btn", user: @user %>
           </div>
           <table class="table">
             <tbody>
@@ -43,9 +43,6 @@
               </tr>
             </tbody>
           </table>
-          <div id="follow_toggle" class="right">
-            <%= render "follows/follow_btn", user: @user %>
-          </div>
         </div>
         <div class="title pa-20 center">
           <h１ class="font-30">投稿一覧</h１>

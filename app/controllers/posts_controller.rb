@@ -25,22 +25,29 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save!
+    if @post.save
+      flash[:success] = "投稿しました"
       redirect_to posts_path
     else
+      flash.now[:danger] = "投稿に失敗しました"
       render :new
     end
   end
 
   def edit
-    redirect_to posts_path unless @post.user == current_user
+    unless @post.user == current_user
+      flash[:danger] = "他の人の投稿を編集することはできません"
+      redirect_to posts_path
+    end
   end
 
   def update
     if @post.user == current_user
       if @post.update(post_params)
+        flash[:success] = "投稿を編集しました"
         redirect_to post_path(@post)
       else
+        flash.now[:danger] = "投稿を編集できませんでした"
         render :edit
       end
     else
@@ -51,11 +58,14 @@ class PostsController < ApplicationController
   def destroy
     if @post.user == current_user
       if @post.destroy
+        flash[:success] = "投稿を削除しました"
         redirect_to posts_path
       else
+        flash[:danger] = "削除できていません"
         redirect_to posts_path
       end
     else
+      flash[:danger] = "他の人の投稿を削除することはできません"
       redirect_to posts_path
     end
   end

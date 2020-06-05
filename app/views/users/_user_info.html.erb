@@ -37,8 +37,14 @@
       </tr>
     </tbody>
   </table>
+  <hr>
+  <% unless user == current_user %>
+    <div id="follow_toggle" class="center wid-100 ma-b-20">
+      <%= render "follows/follow_btn", user: user %>
+    </div>
+  <% end %>
   <div class="center wid-70 ma-a">
-    <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"btn btn-outline-primary btn-lg wid-100" %>
+    <%= link_to "お気に入り投稿一覧", user_likes_path(user), class:"wid-100" %>
   </div>
   <% if user == current_user %>
     <div class="center wid-70 ma-a  ma-t-20">
@@ -56,7 +62,7 @@
             <% end %>
           <% end %>
         <% else %>
-          <p>本日の予定はありません</p>
+          <p class="pa-l-30">本日の予定はありません</p>
         <% end %>
       </ul>
     </div>
@@ -68,11 +74,6 @@
       <div class="chat-rooms-title center ma-t-30">
         <h4>チャット一覧</h4>
       </div>
-      <p class="right">
-        <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          一覧を表示
-        </a>
-      </p>
       <div class="chat-index-box collapse" id="collapseExample">
         <ul class="list-group list-group-flush">
           <% user.rooms.each do |room| %>
@@ -83,6 +84,11 @@
           <hr>
         </ul>
       </div>
+      <p class="right">
+        <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          一覧を表示
+        </a>
+      </p>
     </div>
   <% end %>
 </div>
