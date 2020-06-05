@@ -1,33 +1,40 @@
 <div class="container-fluid back-sign">
   <div class="row">
-    <div class="col-4 sign-up-form">
-      <div class="title pa-30 center">
+    <div class="col-lg-4 sign-up-form">
+      <div class="title pa-20 center">
         <h1>S i g n U p</h1>
       </div>
       <div class="form-box">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= render "shared/form_error_message", resource: resource %>
 
           <div class="form-group">
             <%= f.label :name, "ニックネーム" %><br />
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+            <div class="invalid-feedback">
+              ニックネームを確認してください
+            </div>
           </div>
 
           <div class="form-group">
             <%= f.label :email, "メールアドレス" %><br />
             <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
+            <div class="invalid-feedback">
+              メールアドレスを確認してください
+            </div>
           </div>
 
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <%= f.label :alc_category_id, "好きなお酒", class:"input-group-text" %>
-            </div>
-            <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, include_blank: "--選択してください--", class:"custom-select form-control" %>
+          <div class="form-group">
+            <%= f.label :alc_category, "お酒ジャンル" %><br>
+            <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, {prompt: "ー選択してくださいー"}, {class: "form-control"} %>
           </div>
 
           <div class="form-group">
             <%= f.label :introduction, "自己紹介文" %><br />
             <%= f.text_area :introduction, autocomplete: "introduction", class: 'form-control' %>
+            <div class="invalid-feedback">
+              400文字以内で入力してください
+            </div>
           </div>
 
           <div class="form-group">
@@ -36,11 +43,17 @@
               <em>(英数 <%= @minimum_password_length %> 文字以上)</em>
             <% end %><br />
             <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+            <div class="invalid-feedback">
+              パスワードを確認してください
+            </div>
           </div>
 
           <div class="form-group">
             <%= f.label :password_confirmation, "パスワード確認" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+            <div class="invalid-feedback">
+              パスワードが一致しません
+            </div>
           </div>
 
           <div class="form-group right ma-t-50">

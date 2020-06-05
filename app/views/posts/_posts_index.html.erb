@@ -1,7 +1,12 @@
-<div class="post-box pa-20 ma-y-20 box ribbon-wrapper">
+<div class="post-box pa-20 ma-y-20 box ribbon-wrapper sub-ribbon-wrapper">
   <div id="post-title" class="post-box-title ma-b-30">
     <h4 class="center"><%= link_to post.title, post_path(post) %></h4>
   </div>
+  <% if DateTime.now - 1 < post.created_at %>
+    <div class="sub-ribbon-content">
+      <span class="sub-ribbon">New!</span>
+    </div>
+  <% end %>
   <div class="post-box-alccategory ribbon">
     <p><%= post.alc_category.name %></p>
   </div>

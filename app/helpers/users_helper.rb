@@ -20,9 +20,9 @@ module UsersHelper
   # プロフィール画像が登録されている時といない時の切り替え
   def user_info_image(user)
     if user.image.blank?
-      image_tag "no_image.png", :size => "200x200"
+      image_tag "no_image.png", :size => "200x200", id: "img_prev"
     else
-      image_tag user.image.thumb300.to_s
+      image_tag user.image.thumb300.to_s, id: "img_prev"
     end
   end
 

@@ -1,39 +1,57 @@
 <%= form_for @post do |f| %>
 
-    <div class="form-group">
-      <div class="profile_image_box pa-20">
-        <%= post_show_image(@post) %>
-      </div>
-      <%= f.file_field :image %>
-    </div>
+  <%= render "shared/form_error_message", resource: @post %>
 
-    <div class="form-group">
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  <div class="form-group">
+    <div class="profile_image_box pa-20">
+      <% if @post.image.blank? %>
+        <%= image_tag "no-image.png", :size => "300x200", id: "img_prev" %>
+      <% else %>
+        <%= image_tag @post.image.thumb300.to_s, size:"300x200", id: "img_prev" %>
+      <% end %>
     </div>
+    <%= f.file_field :image, id: "input_img" %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :menu_name, "メニュー名" %>
-      <%= f.text_field :menu_name, class: "form-control" %>
+  <div class="form-group">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+    <div class="invalid-feedback">
+      タイトルを確認してください
     </div>
-    
-    <div class="form-group">
-      <%= f.label :alc_category, "お酒ジャンル" %><br>
-      <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, {prompt: ""}, {class: "form-control"} %>
-    </div>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :menu_category, "投稿ジャンル" %><br>
-      <%= f.collection_select :menu_category_id, MenuCategory.all, :id, :name, {prompt: ""}, {class: "form-control"} %>
+  <div class="form-group">
+    <%= f.label :menu_name, "メニュー名" %>
+    <%= f.text_field :menu_name, class: "form-control" %>
+    <div class="invalid-feedback">
+      メニュー名を確認してください
     </div>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :alc_category, "お酒ジャンル" %><br>
+    <%= f.collection_select :alc_category_id, AlcCategory.all, :id, :name, {prompt: ""}, {class: "form-control"} %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :content, "投稿内容" %>
-      <%= f.text_area :content, class: "form-control" %>
+  <div class="form-group">
+    <%= f.label :menu_category, "投稿ジャンル" %><br>
+    <%= f.collection_select :menu_category_id, MenuCategory.all, :id, :name, {prompt: "ー選択してくださいー"}, {class: "form-control"} %>
+    <div class="invalid-feedback">
+      ジャンルを選択してください
     </div>
+  </div>
 
-    <div class="form-group right ma-t-20">
-      <%= f.submit btn_title, class: "btn-primary btn-lg" %>
+  <div class="form-group">
+    <%= f.label :content, "投稿内容" %>
+    <%= f.text_area :content, class: "form-control" %>
+    <div class="invalid-feedback">
+      投稿内容を確認してください
     </div>
+  </div>
 
-  <% end %>
+  <div class="form-group right ma-t-20">
+    <%= f.submit btn_title, class: "btn-primary btn-lg" %>
+  </div>
+
+<% end %>

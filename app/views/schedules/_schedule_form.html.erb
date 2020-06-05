@@ -1,5 +1,7 @@
 <%= form_for schedule do |f| %>
 
+  <%= render "shared/form_error_message", resource: schedule %>
+
   <div class="form-group">
     <p class="font-20">日時</p>
     <%= f.date_field :start_date, class: "form-control" %>
@@ -8,11 +10,17 @@
   <div class="form-group">
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title, autofocus: true, class: "form-control", id: "schedule_title" %>
+    <div class="invalid-feedback">
+      タイトルを入力してください
+    </div>
   </div>
 
   <div class="form-group">
     <%= f.label :content, "内容" %>
     <%= f.text_area :content, class: "form-control" %>
+    <div class="invalid-feedback">
+      内容は400文字以内で登録してください
+    </div>
   </div>
 
   <div class="form-group right ma-t-20">
