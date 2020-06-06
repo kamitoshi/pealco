@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :follower]
 
   def index
-    @users = User.page(params[:page]).per(25)
+    if params[:alc_category_id]
+      @users = User.where(alc_category_id: params[:alc_category_id]).page(params[:page]).per(25)
+    else
+      @users = User.page(params[:page]).per(25)
+    end
   end
 
   def follow

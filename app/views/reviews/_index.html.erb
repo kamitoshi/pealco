@@ -1,0 +1,33 @@
+<div class="ma-y-20 pa-x-20 font-30">
+  レビュー
+</div>
+<div class="right">
+  <p id="review_form" class="pointer"><%= link_to "レビューを書く", new_post_review_path(@post.id) %></p>
+</div>
+<hr>
+<% reviews.each do |review| %>
+  <% unless review.nil? %>
+    <div class="review-box ma-l-30 ma-r-30 ma-y-10">
+      <div class="review-box-content" id="review">
+        <p class="border-b dis-ib">評価：<%= render "reviews/review_star", review: review %></p>
+        <p style="word-wrap: break-word"><%= review.content %></p>
+      </div>
+      <div class="review-box-info right">
+        <span><%= link_to "@#{review.user.name}", user_path(review.user) %></span>     
+        <span class="review-date pull-right">
+          <%= review.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </span><br>
+        <span>
+          <% if review.user == current_user %>
+            <%= link_to post_review_path(review.post_id, review.id), method: :delete, remote: true, class: "review_destroy" do %>
+              <i class="fas fa-trash" style="color: gray;"></i>
+            <% end %>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <hr>
+  <% else %>
+    <p>まだレビューがありません</p>
+  <% end %>
+<% end %>

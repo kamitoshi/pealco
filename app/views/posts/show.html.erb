@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-lg-4 ma-t-50">
       <%= render "users/user_info", user: @post.user %>
@@ -53,6 +53,11 @@
           <%= render "comments/index", comments: @comments %>
         </div>
         <%= render "comments/form", {comment: @comment, post: @post} %> 
+      </div>
+      <div class="ma-t-30 box">
+        <div id="review_area">
+          <%= render "reviews/index", reviews: @reviews %>
+        </div>
       </div>
     </div>
   </div>

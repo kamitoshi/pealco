@@ -39,8 +39,11 @@
   </table>
   <hr>
   <% unless user == current_user %>
-    <div id="follow_toggle" class="center wid-100 ma-b-20">
+    <div id="follow_toggle" class="right wid-100 ma-b-20">
       <%= render "follows/follow_btn", user: user %>
+    </div>
+    <div class="message-link center wid-100 ma-b-20">
+      <%= link_to "プロフィールを見る", user_path(user), class: "wid-70" %>
     </div>
   <% end %>
   <div class="center wid-70 ma-a">

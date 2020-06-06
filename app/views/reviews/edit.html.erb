@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row ma-t-50">
+    <div class="col-lg-8 offset-lg-2">
+      <div id="title" class="title ma-t-50">
+        <h1 class="font-30">レビュー</h1>
+      </div>
+      <div class="schedule-form ma-t-30 box">
+        <%= form_for @review, url: post_review_path(params[:post_id],@review.id) do |f| %>
+          <div class="form-group">
+            <%= render "reviews/review_star", review: @review %>
+            <%= f.select :rating, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]] %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :content, "レビュー内容" %>
+            <%= f.text_area :content, class: "form-control" %>
+            <div class="invalid-feedback">
+              内容を確認してください
+            </div>
+          </div>
+
+          <div class="form-group right ma-t-20">
+            <%= f.submit "レビューする", class: "btn-primary btn-lg" %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

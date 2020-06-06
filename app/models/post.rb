@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :menu_category
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :review, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 

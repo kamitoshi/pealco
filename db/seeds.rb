@@ -16,7 +16,7 @@ AlcCategory.create!(
     {name:"日本酒", image: File.open("#{Rails.root}/public/alc/japan.jpg")},
     {name:"焼酎", image: File.open("#{Rails.root}/public/alc/shochu.jpeg")},
     {name:"ワイン", image: File.open("#{Rails.root}/public/alc/wine.jpg")},
-    {name:"スパークリングワイン", image: File.open("#{Rails.root}/public/alc/speakringWine.jpg")},
+    {name:"シャンパン", image: File.open("#{Rails.root}/public/alc/speakringWine.jpg")},
     {name:"カクテル", image: File.open("#{Rails.root}/public/alc/kakuteru.jpg")},
     {name:"その他", image: File.open("#{Rails.root}/public/alc/other.jpg")}
   ]
