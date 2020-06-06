@@ -1,12 +1,16 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-4 ma-t-50">
-      <%= render "posts/category_index" %>
-    </div>
-    <div class="col-lg-8 ma-t-30">
+    <div class="col-lg-8 offset-lg-2 ma-t-50">
       <div id="title" class="title">
         <h１ class="font-30">投稿一覧</h１>
       </div>
+    </div>
+  </div>
+  <div class="row ma-t-30">
+    <div class="col-lg-3">
+      <%= render "posts/category_index" %>
+    </div>
+    <div class="col-lg-6">
       <% if @posts.any? %>
         <% @posts.each do |post| %>  
           <%= render "posts/posts_index", post: post %>
@@ -17,6 +21,10 @@
       <div class="page wid-60 ma-a">
         <%= paginate @posts %>
       </div>
+    </div>
+    <div class="col-lg-3">
+      <%= render "posts/recommend_post" %>
+      <%= render "posts/recommend_user" %>
     </div>
   </div>
 </div>

@@ -1,8 +1,6 @@
 <div class="category wid-90 ma-a">
-  <div id="title" class="category-title">
-    <h4>ジャンル</h4>
-  </div>
-  <div class="category-list-box box">
+  <div class="category-list-box box center pa-b-20">
+    <h5>ジャンル</h5>
     <% @alc_categories.each do |category| %>
       <div class="ma-b-20 dis-flex-box">
         <div class="dis-ib"><%= image_tag category.image.thumb50.to_s %>　<%= link_to category.name, posts_path(alc_category_id: category.id) %></div>

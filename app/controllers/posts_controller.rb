@@ -11,12 +11,16 @@ class PostsController < ApplicationController
     else
       @posts = Post.page(params[:page]).order(created_at: :desc).per(25)
     end
+    @recommend_posts = Post.where(alc_category_id: current_user.alc_category_id).where.not(user_id: current_user.id).shuffle.take(3)
+    @recommend_users = User.where(alc_category_id: current_user.alc_category_id).where.not(id: current_user.id).shuffle.take(3)
   end
 
   def show
     @comment = Comment.new
     @comments = Comment.where(post_id: @post.id).order(created_at: :desc)
     @like = Like.find_by(user_id: current_user.id, post_id: @post.id)
+    @review = Review.new
+    @reviews = Review.where(post_id: @post.id).order(created_at: :desc)
   end
 
   def new
