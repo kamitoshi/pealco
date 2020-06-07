@@ -2,24 +2,29 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only:[:show, :edit, :update, :destroy]
   before_action :category_index
+  before_action :ransack, only:[:show, :new, :edit]
 
   def index
     if params[:alc_category_id]
-      @posts = Post.where(alc_category_id: params[:alc_category_id]).order(created_at: :desc).page(params[:page]).per(25)
+      @post_search = Post.where(alc_category_id: params[:alc_category_id]).ransack(params[:q])
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
     elsif params[:user_id]
-      @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc).page(params[:page]).per(25)
+      @post_search = Post.where(user_id: params[:user_id]).ransack(params[:q])
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
     else
-      @posts = Post.page(params[:page]).order(created_at: :desc).per(25)
+      @post_search = Post.ransack(params[:q])
+      @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
     end
     @recommend_posts = Post.where(alc_category_id: current_user.alc_category_id).where.not(user_id: current_user.id).shuffle.take(3)
     @recommend_users = User.where(alc_category_id: current_user.alc_category_id).where.not(id: current_user.id).shuffle.take(3)
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
   end
 
   def show
     @comment = Comment.new
     @comments = Comment.where(post_id: @post.id).order(created_at: :desc)
     @like = Like.find_by(user_id: current_user.id, post_id: @post.id)
-    @review = Review.new
     @reviews = Review.where(post_id: @post.id).order(created_at: :desc)
   end
 
@@ -74,7 +79,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   private
 
   def post_params
@@ -87,6 +91,13 @@ class PostsController < ApplicationController
 
   def category_index
     @alc_categories = AlcCategory.all
+  end
+
+  def ransack
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end

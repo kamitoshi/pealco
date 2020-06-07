@@ -25,4 +25,22 @@ module PostsHelper
     end
   end
 
+  # 評価の平均値を出すための数値の配列生成
+  def rates(reviews)
+    rates = []
+    reviews.each do |review|
+      rates.push(review.rating)
+    end
+    return rates
+  end
+
+  # 評価の平均値を出すため
+  def average(array)
+    sum = 0
+    array.each do |num|
+      sum += num
+    end
+    return ave = sum / array.length
+  end
+
 end

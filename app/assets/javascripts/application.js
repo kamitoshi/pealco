@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
+//= require jquery.raty
 //= require_tree .
 
 $(function () {

@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only:[:show, :edit, :update, :destroy]
+  before_action :ransack
   def index
   end
 
@@ -71,4 +72,12 @@ class ReviewsController < ApplicationController
   def set_review
     @review = Review.find(params[:id])
   end
+
+  def ransack
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
+  end
+
 end

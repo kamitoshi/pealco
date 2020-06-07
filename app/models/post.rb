@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :menu_category
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :review, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 
@@ -14,5 +14,9 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :alc_category_id, presence: true
   validates :menu_category_id, presence: true
+
+  def top_rank_posts
+
+  end
 
 end

@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
+  before_action :ransack, only:[:index]
 
   def index
     @user = User.find(params[:user_id])
@@ -26,6 +27,13 @@ class LikesController < ApplicationController
 
   def like_params
     params.require(:like).permit(:user_id, :post_id)
+  end
+
+  def ransack
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end
