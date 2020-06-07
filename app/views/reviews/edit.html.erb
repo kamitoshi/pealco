@@ -6,9 +6,9 @@
       </div>
       <div class="schedule-form ma-t-30 box">
         <%= form_for @review, url: post_review_path(params[:post_id],@review.id) do |f| %>
-          <div class="form-group">
-            <%= render "reviews/review_star", review: @review %>
-            <%= f.select :rating, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]] %>
+          <div class="form-group" id="edit_star">
+            <%= f.label :rating, "レビュー" %>
+            <%= f.hidden_field :rating, id: :review_star %>
           </div>
 
           <div class="form-group">
@@ -28,3 +28,14 @@
     </div>
   </div>
 </div>
+<script>
+  $("#edit_star").raty({
+    size: 36,
+    starOff: "/assets/star-off.png",
+    starOn: "/assets/star-on.png",
+    starHalf: "/assets/star-half.png",
+    score: <%= @review.rating %>,
+    scoreName: "review[rating]",
+    half: true,
+  });
+</script>

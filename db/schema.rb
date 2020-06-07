@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_155937) do
+ActiveRecord::Schema.define(version: 2020_06_07_053742) do
 
   create_table "alc_categories", force: :cascade do |t|
     t.string "name"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_155937) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
+    t.float "rating", default: 0.0, null: false
     t.text "content"
     t.integer "user_id"
     t.integer "post_id"

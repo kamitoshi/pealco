@@ -31,7 +31,15 @@
               <%= image_tag @post.image.thumb300.to_s, class:"image-box" %>
             </div>
           </div>
-          <div class="post-box-content pa-x-50 pa-b-50 ma-t-50">
+          <div class="post-review-box ma-l-50 ma-t-20">
+            評価(<%= @post.reviews.count %>件)：
+            <% if @post.reviews.any? %>
+              <span id="ave_star" class="ma-r-10"></span><%= average(rates(@post.reviews)) %>
+            <% else %>
+              <span>まだレビューされていません</span>
+            <% end %>
+          </div>
+          <div class="post-box-content pa-x-50 pa-b-50 ma-t-30">
             <h2>紹介文</h2>
             <%= simple_format(@post.content) %>
           </div>
@@ -62,3 +70,15 @@
     </div>
   </div>
 </div>
+<script>
+  $("#ave_star").raty({
+    size: 36,
+    starOff: "/assets/star-off.png",
+    starOn: "/assets/star-on.png",
+    starHalf: "/assets/star-half.png",
+    readOnly: true,
+    score: <%= @post.reviews.average(:rating).to_f %>,
+    scoreName: "review[rating]",
+    half: true,
+  });
+</script>

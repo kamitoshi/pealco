@@ -5,11 +5,11 @@
   <p id="review_form" class="pointer"><%= link_to "レビューを書く", new_post_review_path(@post.id) %></p>
 </div>
 <hr>
-<% reviews.each do |review| %>
-  <% unless review.nil? %>
+<% if reviews.any? %>
+  <% reviews.each do |review| %>
     <div class="review-box ma-l-30 ma-r-30 ma-y-10">
       <div class="review-box-content" id="review">
-        <p class="border-b dis-ib">評価：<%= render "reviews/review_star", review: review %></p>
+        <h5>評価：<span id="index_star_<%= review.id %>"></span></h5>
         <p style="word-wrap: break-word"><%= review.content %></p>
       </div>
       <div class="review-box-info right">
@@ -19,7 +19,10 @@
         </span><br>
         <span>
           <% if review.user == current_user %>
-            <%= link_to post_review_path(review.post_id, review.id), method: :delete, remote: true, class: "review_destroy" do %>
+            <%= link_to edit_post_review_path(review.post_id, review.id), class: "review_edit" do %>
+              <i class="fas fa-edit" style="color: gray;"></i>
+            <% end %>
+            <%= link_to post_review_path(review.post_id, review.id), method: :delete, remote: true, class: "review_destroy ma-l-20" do %>
               <i class="fas fa-trash" style="color: gray;"></i>
             <% end %>
           <% end %>
@@ -27,7 +30,19 @@
       </div>
     </div>
     <hr>
-  <% else %>
-    <p>まだレビューがありません</p>
+    <script>
+      $("#index_star_<%= review.id %>").raty({
+        size: 36,
+        starOff: "/assets/star-off.png",
+        starOn: "/assets/star-on.png",
+        starHalf: "/assets/star-half.png",
+        readOnly: true,
+        score: <%= review.rating %>,
+        scoreName: "review[rating]",
+        half: true,
+      });
+    </script>
   <% end %>
+<% else %>
+  <p>まだレビューがありません</p>
 <% end %>

@@ -1,21 +1,23 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :follower]
+  before_action :ransack, only: [:index, :show, :edit]
 
   def index
-    if params[:alc_category_id]
-      @users = User.where(alc_category_id: params[:alc_category_id]).page(params[:page]).per(25)
-    else
-      @users = User.page(params[:page]).per(25)
-    end
   end
 
   def follow
-    @users = @user.follow_users.page(params[:page]).per(25)
+    @user_search = @user.follow_users.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
   def follower
-    @users = @user.followed_users.page(params[:page]).per(25)
+    @user_search = @user.followed_users.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
   def show
@@ -65,6 +67,13 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def ransack
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end

@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  layout "no_footer"
+  layout "no_header"
   before_action :authenticate_user!
 
   def show
