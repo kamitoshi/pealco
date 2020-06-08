@@ -1,11 +1,11 @@
 <% if message.user == current_user %>
-  <p class="right pa-l-100">
+  <p id="currentMessage<%= message.id %>" class="myMessage">
     <span class="font-10">@<%= message.user.name %></span><br>
-    <span class="my-message"><%= message.content %></span><br>
+    <span id="current-message-<%= message.id %>" class="my-message"><%= message.content %></span><br>
     <span class="font-10"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %></span>
   </p>
 <% else %>
-  <p class="pa-r-100">
+  <p class="otherMessage">
     <span class="font-10">@<%= message.user.name %></span><br>
     <span class="other-message"><%= message.content %></span><br>
     <span class="font-10"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %></span>

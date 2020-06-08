@@ -15,12 +15,10 @@
         <% @posts.each do |post| %>  
           <%= render "posts/posts_index", post: post %>
         <% end %>
+        <%= paginate @posts %>
       <% else %>
         <p class="ma-t-30 center">投稿はありません</p>
       <% end %>
-      <div class="page wid-60 ma-a">
-        <%= paginate @posts %>
-      </div>
     </div>
     <div class="col-lg-3">
       <%= render "posts/recommend_post" %>

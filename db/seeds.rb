@@ -32,13 +32,20 @@ MenuCategory.create!(
 )
 
 # users #
+User.create!(
+  name: "テストユーザー",
+  email: "test0000@mail.com",
+  password: "test0000",
+  password_confirmation: "test0000",
+  alc_category_id: Random.new.rand(1..7)
+)
 100.times do |n|
   User.create!(
     name: Faker::Name.name,
     email: "test#{n + 1}@mail.com",
     password: "test#{(n+1).to_s+(n+1).to_s}",
     password_confirmation: "test#{(n+1).to_s+(n+1).to_s}",
-    alc_category_id: 1
+    alc_category_id: Random.new.rand(1..7)
   )
 end
 

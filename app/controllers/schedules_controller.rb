@@ -1,6 +1,7 @@
 class SchedulesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_schedule, only:[:show, :edit, :update, :destroy]
+  before_action :ransack
 
   def index
     @schedules = current_user.schedules.all.order(start_date: :asc)
@@ -53,6 +54,13 @@ class SchedulesController < ApplicationController
 
   def set_schedule
     @schedule = Schedule.find(params[:id])
+  end
+
+  def ransack
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end
