@@ -35,10 +35,10 @@
                 <li class="pa-y-20"><strong>投稿メニュー</strong></li>
                 <li><%= link_to "投稿一覧", posts_path %></li>
                 <li><%= link_to "My投稿一覧", posts_path(user_id: current_user.id) %></li>
-                <li><%= link_to "Myお気に入り投稿一覧", user_likes_path(current_user) %></li>
-                <li>　</li>                
+                <li><%= link_to "Myお気に入り投稿一覧", user_likes_path(current_user) %></li>               
                 <li></li>                
                 <li><%= link_to "退会", user_path(current_user), method: :delete, data:{confirm: "本当に退会してもよろしいですか？"} %></li>
+                <li></li>
               </ul>
             </div>
           </nav>

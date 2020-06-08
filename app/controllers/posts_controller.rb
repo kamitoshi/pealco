@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only:[:show, :edit, :update, :destroy]
   before_action :category_index
-  before_action :ransack, only:[:show, :new, :edit]
+  before_action :ransack, except:[:index]
 
   def index
     if params[:alc_category_id]
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
     else
       @post_search = Post.ransack(params[:q])
-      @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
     end
     @recommend_posts = Post.where(alc_category_id: current_user.alc_category_id).where.not(user_id: current_user.id).shuffle.take(3)
     @recommend_users = User.where(alc_category_id: current_user.alc_category_id).where.not(id: current_user.id).shuffle.take(3)

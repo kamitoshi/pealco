@@ -34,6 +34,10 @@
   background-color: #eee;
 }
 
+.pagination {
+  justify-content: center;
+}
+
 footer {
   width: 100%;
   text-align: center;
@@ -291,7 +295,7 @@ footer {
   @extend .is-invalid;
 }
 
-nav {
+.hidden-nav {
   display: block;
   position: fixed;
   top: 0;
@@ -306,24 +310,24 @@ nav {
   z-index: 3;
   opacity: 0;
 }
-.open nav {
+.open .hidden-nav {
   left: 0;
   opacity: 1;
 }
-nav .inner {
+.hidden-nav .inner {
   padding: 25px;
 }
-nav .inner ul {
+.hidden-nav .inner ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-nav .inner ul li {
+.hidden-nav .inner ul li {
   position: relative;
   margin: 0;
   border-bottom: 1px solid #333;
 }
-nav .inner ul li a {
+.hidden-nav .inner ul li a {
   display: block;
   color: #333;
   font-size: 14px;
@@ -331,11 +335,11 @@ nav .inner ul li a {
   text-decoration: none;
   transition-duration: 0.2s;
 }
-nav .inner ul li a:hover {
+.hidden-nav .inner ul li a:hover {
   background: #e4e4e4;
 }
 @media screen and (max-width: 767px) {
-  nav {
+  .hidden-nav {
     left: -220px;
     width: 220px;
   }

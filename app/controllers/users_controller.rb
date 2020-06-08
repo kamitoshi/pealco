@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @schedules = @user.schedules.order(start_date: :asc)
   end
 
   def edit
