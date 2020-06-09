@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :follower]
-  before_action :ransack, only: [:index, :show, :edit]
+  skip_before_action :ransack, only: [:follow, :follower]
 
   def index
   end
@@ -68,13 +68,6 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def ransack
-    @user_search = User.ransack(params[:q])
-    @users = @user_search.result.page(params[:page]).per(50)
-    @post_search = Post.ransack(params[:q])
-    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end

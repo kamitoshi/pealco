@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-8 offset-lg-2 ma-t-50">
       <div id="title" class="title ma-t-50">
-        <h1 class="font-30">パスワード変更</h1>
+        <h1 class="font-50">Password Edit</h1>
       </div>
       <div class="box">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -19,7 +19,7 @@
 
           <div class="field ma-t-30">
             <%= f.label :current_password, "現在のパスワード" %><br />
-            <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control', required: true %>
+            <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
             <div class="invalid-feedback">
               現在のパスワードが間違っています
             </div>
@@ -30,12 +30,12 @@
             <% if @minimum_password_length %>
               <em>(英数 <%= @minimum_password_length %> 文字以上)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', required: true %>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
           </div>
 
           <div class="field ma-t-30">
             <%= f.label :password_confirmation, "新しいパスワードの確認" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', required: true %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
 
           <div class="actions field right ma-t-50">

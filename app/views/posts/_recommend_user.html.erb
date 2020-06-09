@@ -1,6 +1,6 @@
 <div class="recommend wid-90 ma-a">
   <div class="recommend-box box center">
-    <h5>おすすめユーザー</h5>
+    <h1 class="font-30">Recommend User</h1>
     <% if @recommend_users.any? %>
       <% @recommend_users.each do |recommend| %>
         <%= link_to user_path(recommend), class:"recommend-link" do %>
