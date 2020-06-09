@@ -20,11 +20,12 @@ App.room = App.cable.subscriptions.create(
 
       messages.innerHTML += message.data;
       if (message.user_id != current_user_id) {
-        $(`#currentMessage${message.id}`).removeClass("myMessage");
-        $(`#currentMessage${message.id}`).addClass("otherMessage");
-        $(`#current-message-${message.id}`).removeClass("my-message");
-        $(`#current-message-${message.id}`).addClass("other-message");
+        $("#currentMessage" + message.id).removeClass("myMessage");
+        $("#currentMessage" + message.id).addClass("otherMessage");
+        $("#current-message-" + message.id).removeClass("my-message");
+        $("#current-message-" + message.id).addClass("other-message");
       }
+      console.log("#currentMessage" + message.id);
       // Called when there's incoming data on the websocket for this channel
       function scrollBottom() {
         var elementHtml = document.documentElement;
