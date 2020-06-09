@@ -1,7 +1,6 @@
 class SchedulesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_schedule, only:[:show, :edit, :update, :destroy]
-  before_action :ransack
 
   def index
     @schedules = current_user.schedules.all.order(start_date: :asc)

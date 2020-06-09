@@ -2,24 +2,26 @@
   <div class="container-fluid">
     <% if user_signed_in? %>
       <ul class="nav">
-        <li class="nav-item"><%= user_sumnail_image(current_user) %></li>
         <li class="nav-item">
+          <a href="/" class="top-logo dis-ib ma-r-20"><%= image_tag "pealco_logo.png", size:"200x100" %></a>
+        </li>
+        <li class="nav-item pa-t-20"><%= user_sumnail_image(current_user) %></li>
+        <li class="nav-item pa-t-20">
           <a href="/users/#{current_user.id}" data-toggle="tooltip" title="マイページ" style="color:white">
             <%= link_to current_user.name, user_path(current_user), class: "nav-link font-20" %>
           </a>
         </li>
-        <li class="nav-item ma-x-20">
+        <li class="nav-item pa-30">
           <div class="new-post-btn" data-toggle="modal" title="新規投稿" data-target="#AlcCategoryModal" style="color:white">
             <i class="fas fa-pencil-alt font-30"></i>
           </div>
         </li>
-        <li class="nav-item ma-x-20">
+        <li class="nav-item pa-30">
           <div class="search pointer" data-toggle="modal" title="検索" data-target="#SearchModal" style="color:white">
             <i class="fas fa-search font-30"></i>
           </div>
         </li>
       </ul>
-      <a href="/" class="top-logo dis-ib"><%= image_tag "pealco_logo.png", size:"200x100" %></a>
       <div id="navArea">
           <nav class="hidden-nav">
             <div class="inner">
@@ -52,8 +54,8 @@
     <% else %>
       <a href="/" class="top-logo dis-ib"><%= image_tag "pealco_logo.png", size:"200x100" %></a>
       <ul class="nav">
-        <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+        <li class="nav-item pa-20"><%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-primary" %></li>
+        <li class="nav-item pa-20"><%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-success" %></li>
       </ul>
     <% end %>
   </div>

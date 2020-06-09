@@ -13,21 +13,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    flash[:notice] = "新規登録しました"
     cookies.encrypted[:user_id] = resource.id
-    flash[:success] = "新規登録しました"
   end
 
   # GET /resource/edit
-  def edit
-    super
-    flash[:success] = "パスワードを変更しました"
-    redirect_to user_path(resource.id)
-  end
-
-  # PUT /resource
-  # def update
+  # def edit
   #   super
   # end
+
+  # PUT /resource
+  def update
+    super
+    flash[:notice] = "パスワードを変更しました"
+  end
 
   # DELETE /resource
   # def destroy

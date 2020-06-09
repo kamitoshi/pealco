@@ -73,11 +73,4 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
-  def ransack
-    @user_search = User.ransack(params[:q])
-    @users = @user_search.result.page(params[:page]).per(50)
-    @post_search = Post.ransack(params[:q])
-    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
-  end
-
 end

@@ -2,23 +2,23 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only:[:show, :edit, :update, :destroy]
   before_action :category_index
-  before_action :ransack, except:[:index]
+  skip_before_action :ransack, only:[:index]
 
   def index
     if params[:alc_category_id]
       @post_search = Post.where(alc_category_id: params[:alc_category_id]).ransack(params[:q])
-      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(15)
     elsif params[:user_id]
       @post_search = Post.where(user_id: params[:user_id]).ransack(params[:q])
-      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(15)
     else
       @post_search = Post.ransack(params[:q])
-      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(25)
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(15)
     end
     @recommend_posts = Post.where(alc_category_id: current_user.alc_category_id).where.not(user_id: current_user.id).shuffle.take(3)
     @recommend_users = User.where(alc_category_id: current_user.alc_category_id).where.not(id: current_user.id).shuffle.take(3)
     @user_search = User.ransack(params[:q])
-    @users = @user_search.result.page(params[:page]).per(50)
+    @users = @user_search.result.page(params[:page]).per(30)
   end
 
   def show
@@ -91,13 +91,6 @@ class PostsController < ApplicationController
 
   def category_index
     @alc_categories = AlcCategory.all
-  end
-
-  def ransack
-    @user_search = User.ransack(params[:q])
-    @users = @user_search.result.page(params[:page]).per(50)
-    @post_search = Post.ransack(params[:q])
-    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end
