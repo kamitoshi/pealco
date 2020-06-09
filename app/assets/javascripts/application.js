@@ -15,9 +15,42 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require jquery.raty
 //= require_tree .
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
+});
+
+$(function () {
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#img_prev").attr("src", e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#input_img").change(function () {
+    readURL(this);
+  });
+});
+$(function ($) {
+  var $nav = $("#navArea");
+  var $btn = $(".toggle_btn");
+  var $mask = $("#mask");
+  var open = "open"; // class
+  // menu open close
+  $btn.on("click", function () {
+    if (!$nav.hasClass(open)) {
+      $nav.addClass(open);
+    } else {
+      $nav.removeClass(open);
+    }
+  });
+  // mask close
+  $mask.on("click", function () {
+    $nav.removeClass(open);
+  });
 });

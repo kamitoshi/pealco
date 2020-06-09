@@ -1,10 +1,13 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-lg-4 ma-t-50">
       <%= render "users/user_info", user: @user %>
     </div>
     <div class="col-lg-8 ma-t-50">
       <div class="users-box">
+        <div class="title pa-20">
+          <h1 class="center font-50">Follower List</h1>
+        </div>
         <%= render partial: "users/user_index", locals: {users: @users, title: "フォロワー一覧"} %>
       </div>
     </div>

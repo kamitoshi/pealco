@@ -1,0 +1,60 @@
+<div class="modal fade" id="SearchModal" tabindex="-1" role="dialog" aria-labelledby="SearchModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="SearchModalLabel"><i class="fas fa-search"></i>検索</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <ul id="myTab" class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a href="#user" id="user-tab" class="nav-link active" role="tab" data-toggle="tab" aria-controls="user" aria-selected="true">ユーザー</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a href="#post" id="post-tab" class="nav-link" role="tab" data-toggle="tab" aria-controls="post" aria-selected="false">投稿</a>
+          </li>
+        </ul>
+
+        <div id="myTabContent" class="tab-content mt-3">
+          <div id="user" class="tab-pane active" role="tabpanel" aria-labelledby="user-tab">
+            <%= search_form_for @user_search, url: users_path do |f| %>
+              <%= f.label :name_cont, "名前を含む" %>
+              <%= f.search_field :name_cont, class:"form-control" %>
+
+              <div class="form-group">
+                <%= f.label :alc_category_id_eq, "好きなお酒ジャンル" %><br>
+                <%= f.collection_select :alc_category_id_eq, AlcCategory.all, :id, :name, {prompt: "指定なし"}, {class: "form-control"} %>
+              </div>
+
+              <div class="actions"><%= f.submit "検索" %></div>
+            <% end %>
+          </div>
+          <div id="post" class="tab-pane" role="tabpanel" aria-labelledby="post-tab">
+            <%= search_form_for @post_search, url: posts_path do |f| %>
+
+              <div class="form-group">
+                <%= f.label :title_cont, "タイトルを含む" %>
+                <%= f.search_field :title_cont, class:"form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :menu_name_cont, "メニュー名を含む" %>
+                <%= f.search_field :menu_name_cont, class:"form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :alc_category_id_eq, "お酒ジャンル" %><br>
+                <%= f.collection_select :alc_category_id_eq, AlcCategory.all, :id, :name, {prompt: "指定なし"}, {class: "form-control"} %>
+              </div>
+
+              <div class="actions"><%= f.submit "検索" %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

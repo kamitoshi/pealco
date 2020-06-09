@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  layout "no_footer"
+  layout "no_header"
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -12,12 +12,14 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
+    flash[:notice] = "ログインしました"
     cookies.encrypted[:user_id] = resource.id
   end
 
   # DELETE /resource/sign_out
   def destroy
     super
+    flash[:notice] = nil
     cookies.encrypted[:user_id] = nil
   end
 

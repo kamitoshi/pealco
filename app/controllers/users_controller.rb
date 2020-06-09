@@ -1,34 +1,47 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy, :follow, :follower]
+  skip_before_action :ransack, only: [:follow, :follower]
 
   def index
-    @users = User.page(params[:page]).per(25)
   end
 
   def follow
-    @users = @user.follow_users.page(params[:page]).per(25)
+    @user_search = @user.follow_users.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
   def follower
-    @users = @user.followed_users.page(params[:page]).per(25)
+    @user_search = @user.followed_users.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
   def show
+    @schedules = @user.schedules.order(start_date: :asc)
   end
 
   def edit
-    redirect_to user_path(current_user) unless @user == current_user
+    unless @user == current_user
+      flash[:danger] = "他の人のプロフィールは編集できません"
+      redirect_to users_path
+    end
   end
 
   def update
     if @user == current_user
       if @user.update(user_params)
+        flash[:success] = "編集しました"
         redirect_to user_path(@user)
       else
         render :edit
+        flash.now[:danger] = "編集に失敗しました"
       end
     else
+      flash[:danger] = "編集に失敗しました"
       redirect_to user_path(current_user)
     end
   end
@@ -41,6 +54,7 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
       end
     else
+      flash[:danger] = "他の人を退会させることはできません"
       redirect_to user_path(current_user)
     end
   end

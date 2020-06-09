@@ -1,6 +1,6 @@
-<div class="col-lg-8 offset-2 ma-t-30">
-  <div id="title" class="title pa-20">
-    <h１ class="font-30">マイページ</h１>
+<div class="col-lg-12 ma-t-30">
+  <div class="title pa-20">
+    <h1 class="center font-50">My Page</h1>
   </div>
   <div class="user-box box">
     <div class="profile-image-box pa-20 center">
@@ -34,37 +34,116 @@
     </table>
   </div>
   <div class="row">
-    <div class="col-6 ma-t-20">
-      <div class="box ma-t-30" style="height:200px">
-        <div id="sub-title" class="title center">
-          <h１ class="font-20">MENU</h１>
-        </div>
-        <div class="center wid-70 ma-a ma-t-20">
-          <%= link_to "お気に入り一覧", user_likes_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
-        </div>
-        <div class="center wid-70 ma-a ma-t-30">
-          <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-outline-primary btn-lg wid-100" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 ma-t-20">
+    <div class="col-lg-6 ma-t-20">
       <div class="box ma-t-30 scroll-box" style="height:200px">
         <div id="sub-title" class="title center">
-          <h１ class="font-20">チャット</h１>
+          <h1 class="font-25">My Menu</h1>
+        </div>
+        <div class="center wid-70 ma-a ma-t-30">
+          <%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-outline-primary wid-100" %>
+        </div>
+        <div class="center wid-70 ma-a ma-t-20">
+          <%= link_to "お気に入り投稿一覧", user_likes_path(@user), class:"btn btn-outline-primary wid-100" %>
+        </div>
+        <div class="center wid-70 ma-a ma-t-20">
+          <%= link_to "フォロー一覧", follow_user_path(@user), class:"btn btn-outline-primary wid-100" %>
+        </div>
+        <div class="center wid-70 ma-a ma-t-20">
+          <%= link_to "フォロワー一覧", follower_user_path(@user), class:"btn btn-outline-primary wid-100" %>
+        </div>
+        <div class="center wid-70 ma-a ma-t-30">
+          <button type="button" class="btn btn-danger wid-100" data-toggle="modal" data-target="#UserDeleteModal">退会する</button>
+        </div>
+        <%= render "users/delete_modal" %>
+      </div>
+    </div>
+    <div class="col-lg-6 ma-t-20">
+      <div class="box ma-t-30 scroll-box" style="height:200px">
+        <div id="sub-title" class="title center">
+          <h1 class="font-25">Chat Room</h1>
         </div>
         <ul class="list-group list-group-flush ma-t-20">
-          <% @user.rooms.each do |room| %>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <%= link_to communication_user_name(room.users), user_rooms_path(communication_user(room.users)), method: :post, class:"center" %>
-            </li>
+          <% if @user.rooms.any? %>
+            <% @user.rooms.each do |room| %>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <%= link_to communication_user_name(room.users), user_rooms_path(communication_user(room.users)), method: :post, class:"center" %>
+              </li>
+            <% end %>
+          <% else %>
+            <p class="center">まだチャットしたことがありません</p>
           <% end %>
           <hr>
         </ul>
       </div>
     </div>
   </div>
-  <div class="title pa-t-20 center">
-    <h１ class="font-30">投稿一覧</h１>
+  <div class="row">
+    <div class="col-lg-12 ma-t-20">
+      <div class="box ma-t-30">
+        <div id="sub-title" class="title center">
+          <h1 class="font-25">Schedule</h1>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 ma-t-20">
+            <div class="schedule-box">
+              <%= month_calendar(attribute: :starts_at) do |date| %>
+                <div class="schedule-date">
+                  <%= date.strftime("%-m/%-d") %>
+                </div>
+                <% @user.schedules.each do |schedule| %>
+                  <% if schedule.start_date.to_date == date %>
+                    <div class="font-10">
+                      <%= schedule.title %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-lg-6 ma-t-40">
+            <div class="schedule-btn ma-b-20 right">
+              <%= link_to "スケジュール管理", schedules_path, class:"btn btn-outline-primary" %>
+            </div>
+            <div class="scroll-box" style="height:400px">
+              <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th width="25%">日付</th>
+                    <th width="45%">予定</th>
+                    <th colspan="2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if schedules.any? %>
+                    <% schedules.each do |schedule| %>
+                      <% if schedule.start_date.to_date >= Date.today %>
+                        <tr>
+                          <td><%= schedule.start_date.strftime("%-m月%-d日") %></td>
+                          <td><%= schedule.title %></td>
+                          <td><%= link_to "詳細", schedule_path(schedule) %></td>
+                          <td>
+                            <%= link_to schedule_path(schedule), method: :delete do %>
+                              <i class="fas fa-trash" style="color: gray;"></i>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <tr>
+                      <td colspan="2">予定はありません</td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="title pa-t-50">
+    <h1 class="font-40 center">Post List</h1>
   </div>
   <div class="user-posts">
     <% if @user.posts.any? %>

@@ -1,24 +1,21 @@
 <div class="container">
   <div class="row">
     <% if @user == current_user %>
-      <%= render "users/mypage" %>
+      <%= render "users/mypage", schedules: @schedules %>
     <% else %>
-      <div class="col-lg-4 ma-t-50">
-        <%= render "users/user_info", user: current_user %>
-      </div>
-      <div class="col-lg-8 ma-t-30">
+      <div class="col-lg-12 ma-t-30">
         <div id="title" class="title">
-          <h１ class="font-30"><%= @user.name %>さんの詳細</h１>
+          <h1 class="font-30"><%= @user.name %> Detail Info</h1>
         </div>
         <div class="user-box box">
           <div class="profile-image-box pa-20 center">
             <%= user_info_image(@user) %>
           </div>
-          <div class="message-link right ma-b-20">
-            <%= link_to "メッセージを送る", user_rooms_path(@user),method: :post, class: "btn btn-success" %>
-          </div>
           <div id="follow_info">
             <%= render "follows/follow_info", user: @user %>
+          </div>
+          <div id="follow_toggle" class="right ma-b-10">
+            <%= render "follows/follow_btn", user: @user %>
           </div>
           <table class="table">
             <tbody>
@@ -43,12 +40,12 @@
               </tr>
             </tbody>
           </table>
-          <div id="follow_toggle" class="right">
-            <%= render "follows/follow_btn", user: @user %>
+          <div class="message-link right ma-b-20">
+            <%= link_to "メッセージを送る", user_rooms_path(@user),method: :post, class: "btn btn-success" %>
           </div>
         </div>
         <div class="title pa-20 center">
-          <h１ class="font-30">投稿一覧</h１>
+          <h1 class="font-50">Post List</h1>
         </div>
         <div class="user-posts">
           <% if @user.posts.any? %>

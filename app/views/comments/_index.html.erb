@@ -3,8 +3,8 @@
   コメント
 </div>
 <hr>
-<% comments.each do |comment| %>
-  <% unless comment.nil? %>
+<% if comments.any? %>
+  <% comments.first(3).each do |comment| %>  
     <div class="comment-box ma-l-30 ma-r-30 ma-y-10">
       <div class="comment-box-content" id="comment">
         <p style="word-wrap: break-word"><%= comment.content %></p>
@@ -24,6 +24,36 @@
       </div>
     </div>
     <hr>
+  <% end %>
+  <% if comments.length > 3 %>
+    <% comments[3..-1].each do |comment| %>  
+      <div class="collapse" id="collapseCommentIndex">
+        <div class="comment-box ma-l-30 ma-r-30 ma-y-10">
+          <div class="comment-box-content" id="comment">
+            <p style="word-wrap: break-word"><%= comment.content %></p>
+          </div>
+          <div class="comment-box-info right">
+            <span><%= link_to "@#{comment.user.name}", user_path(comment.user) %></span>     
+            <span class="comment-date pull-right">
+              <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            </span><br>
+            <span>
+              <% if comment.user == current_user %>
+                <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, class: "comment_destroy" do %>
+                  <i class="fas fa-trash" style="color: gray;"></i>
+                <% end %>
+              <% end %>
+            </span>
+          </div>
+        </div>
+        <hr>
+      </div>
+    <% end %>
+    <p class="right">
+      <a data-toggle="collapse" href="#collapseCommentIndex" role="button" aria-expanded="false" aria-controls="collapseExample">
+        もっと見る
+      </a>
+    </p>
   <% end %>
 <% end %>
 

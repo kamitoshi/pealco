@@ -1,52 +1,62 @@
 <div class="container">
-  <div class="row ma-t-50">
-    <div id="title" class="schedule-title pa-20">
-      <h1 class="font-30">スケジュールカレンダー</h1>
+  <div class="row ma-t-30">
+    <div class="col-lg-12">
+      <div class="schedule-title pa-20">
+        <h1 class="font-50">Schedule Calendar</h1>
+      </div>
     </div>
-    <div class="col-lg-8 box">
-      <%= month_calendar(attribute: :starts_at) do |date| %>
-          <div class="schedule-date">
-            <%= link_to date.strftime("%-m/%-d"), new_schedule_path(date: date) %>
-          </div>
-        <% @schedules.each do |schedule| %>
-          <% if schedule.start_date.to_date == date %>
-            <div class="font-10">
-              <%= schedule.title %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-lg-4 ma-t-30">
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th width="25%">日付</th>
-            <th width="45%">予定</th>
-            <th colspan="2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @schedules.any? %>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row box">
+        <div class="col-lg-7">
+          <%= month_calendar(attribute: :starts_at) do |date| %>
+              <div class="schedule-date">
+                <%= link_to date.strftime("%-m/%-d"), new_schedule_path(date: date) %>
+              </div>
             <% @schedules.each do |schedule| %>
-              <tr>
-                <td><%= schedule.start_date.strftime("%-m月%-d日") %></td>
-                <td><%= schedule.title %></td>
-                <td><%= link_to "詳細", schedule_path(schedule) %></td>
-                <td>
-                  <%= link_to schedule_path(schedule), method: :delete do %>
-                    <i class="fas fa-trash" style="color: gray;"></i>
-                  <% end %>
-                </td>
-              </tr>
+              <% if schedule.start_date.to_date == date %>
+                <div class="font-10">
+                  <%= schedule.title %>
+                </div>
+              <% end %>
             <% end %>
-          <% else %>
-            <tr>
-              <td colspan="2">予定はありません</td>
-            </tr>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+        <div class="col-lg-5 ma-t-30">
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th width="30%">日付</th>
+                <th width="40%">予定</th>
+                <th colspan="2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @schedules.any? %>
+                <% @schedules.each do |schedule| %>
+                  <% if schedule.start_date.to_date >= Date.today %>
+                    <tr>
+                      <td><%= schedule.start_date.strftime("%-m月%-d日") %></td>
+                      <td><%= schedule.title %></td>
+                      <td><%= link_to "詳細", schedule_path(schedule) %></td>
+                      <td>
+                        <%= link_to schedule_path(schedule), method: :delete do %>
+                          <i class="fas fa-trash" style="color: gray;"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="2">予定はありません</td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

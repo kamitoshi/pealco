@@ -16,9 +16,11 @@ class SchedulesController < ApplicationController
   def create
     @schedule = current_user.schedules.build(schedule_params)
     if @schedule.save
+      flash[:success] = "スケジュールを登録しました"
       redirect_to schedules_path
     else
-      redirect_to schedules_path
+      flash.now[:danger] = "スケジュールを登録できません"
+      render :new
     end
   end
 
@@ -27,14 +29,17 @@ class SchedulesController < ApplicationController
 
   def update
     if @schedule.update(schedule_params)
+      flash[:success] = "スケジュールを編集しました"
       redirect_to schedules_path
     else
+      flash.now[:danger] = "スケジュールの編集に失敗しました"
       render :edit
     end
   end
 
   def destroy
     if @schedule.destroy
+      flash[:danger] = "スケジュールを削除しました"
       redirect_to schedules_path
     else
       render :index
@@ -48,6 +53,13 @@ class SchedulesController < ApplicationController
 
   def set_schedule
     @schedule = Schedule.find(params[:id])
+  end
+
+  def ransack
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(50)
+    @post_search = Post.ransack(params[:q])
+    @posts = @post_search.result.page(params[:page]).order(created_at: :desc).per(25)
   end
 
 end

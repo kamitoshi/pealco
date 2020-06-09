@@ -208,6 +208,9 @@
 .border {
   border: 1px solid #eee;
 }
+.border-b {
+  border-bottom: 1px solid #000;
+}
 
 // width //
 .wid-100 {
@@ -244,6 +247,12 @@
 }
 .font-30 {
   font-size: 30px;
+}
+.font-40 {
+  font-size: 40px;
+}
+.font-50 {
+  font-size: 50px;
 }
 
 // display //
@@ -319,4 +328,7 @@
 .scroll-box {
   overflow: scroll;
   z-index: -10;
+}
+.pointer {
+  cursor: pointer;
 }

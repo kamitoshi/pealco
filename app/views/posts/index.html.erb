@@ -1,22 +1,28 @@
-<div class="container">
+<div class="container-fluid">
+  <div class="row ma-t-50">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="title pa-20">
+        <h1 class="font-50 center">Post List</h1>
+      </div>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-lg-4 ma-t-50">
+    <div class="col-lg-3">
       <%= render "posts/category_index" %>
     </div>
-    <div class="col-lg-8 ma-t-30">
-      <div id="title" class="title">
-        <h１ class="font-30">投稿一覧</h１>
-      </div>
+    <div class="col-lg-6">
       <% if @posts.any? %>
         <% @posts.each do |post| %>  
           <%= render "posts/posts_index", post: post %>
         <% end %>
+        <%= paginate @posts %>
       <% else %>
         <p class="ma-t-30 center">投稿はありません</p>
       <% end %>
-      <div class="page wid-60 ma-a">
-        <%= paginate @posts %>
-      </div>
+    </div>
+    <div class="col-lg-3">
+      <%= render "posts/recommend_post" %>
+      <%= render "posts/recommend_user" %>
     </div>
   </div>
 </div>

@@ -2,21 +2,30 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only:[:show, :edit, :update, :destroy]
   before_action :category_index
+  skip_before_action :ransack, only:[:index]
 
   def index
     if params[:alc_category_id]
-      @posts = Post.where(alc_category_id: params[:alc_category_id]).order(created_at: :desc).page(params[:page]).per(25)
+      @post_search = Post.where(alc_category_id: params[:alc_category_id]).ransack(params[:q])
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(15)
     elsif params[:user_id]
-      @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc).page(params[:page]).per(25)
+      @post_search = Post.where(user_id: params[:user_id]).ransack(params[:q])
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(15)
     else
-      @posts = Post.page(params[:page]).order(created_at: :desc).per(25)
+      @post_search = Post.ransack(params[:q])
+      @posts = @post_search.result.order(created_at: :desc).page(params[:page]).per(15)
     end
+    @recommend_posts = Post.where(alc_category_id: current_user.alc_category_id).where.not(user_id: current_user.id).shuffle.take(3)
+    @recommend_users = User.where(alc_category_id: current_user.alc_category_id).where.not(id: current_user.id).shuffle.take(3)
+    @user_search = User.ransack(params[:q])
+    @users = @user_search.result.page(params[:page]).per(30)
   end
 
   def show
     @comment = Comment.new
     @comments = Comment.where(post_id: @post.id).order(created_at: :desc)
     @like = Like.find_by(user_id: current_user.id, post_id: @post.id)
+    @reviews = Review.where(post_id: @post.id).order(created_at: :desc)
   end
 
   def new
@@ -25,22 +34,29 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save!
+    if @post.save
+      flash[:success] = "投稿しました"
       redirect_to posts_path
     else
+      flash.now[:danger] = "投稿に失敗しました"
       render :new
     end
   end
 
   def edit
-    redirect_to posts_path unless @post.user == current_user
+    unless @post.user == current_user
+      flash[:danger] = "他の人の投稿を編集することはできません"
+      redirect_to posts_path
+    end
   end
 
   def update
     if @post.user == current_user
       if @post.update(post_params)
+        flash[:success] = "投稿を編集しました"
         redirect_to post_path(@post)
       else
+        flash.now[:danger] = "投稿を編集できませんでした"
         render :edit
       end
     else
@@ -51,15 +67,17 @@ class PostsController < ApplicationController
   def destroy
     if @post.user == current_user
       if @post.destroy
+        flash[:success] = "投稿を削除しました"
         redirect_to posts_path
       else
+        flash[:danger] = "削除できていません"
         redirect_to posts_path
       end
     else
+      flash[:danger] = "他の人の投稿を削除することはできません"
       redirect_to posts_path
     end
   end
-
 
   private
 

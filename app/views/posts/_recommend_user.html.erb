@@ -1,0 +1,20 @@
+<div class="recommend wid-90 ma-a">
+  <div class="recommend-box box center">
+    <h1 class="font-30">Recommend User</h1>
+    <% if @recommend_users.any? %>
+      <% @recommend_users.each do |recommend| %>
+        <%= link_to user_path(recommend), class:"recommend-link" do %>
+          <div class="recommend-content-box pa-y-20">
+            <p class="menu-title"><span><%= recommend.name %></span></p>
+            <div class="sumnale-image-box">
+              <%= user_sumnail_image(recommend) %><br>
+              <span >好きなジャンル：<%= recommend.alc_category.name %></span>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="center">同じジャンル好きのユーザーがいません</p>
+    <% end %>
+  </div>
+</div>

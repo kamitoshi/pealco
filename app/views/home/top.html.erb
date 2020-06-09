@@ -1,26 +1,37 @@
 <div class="container-fluid">
   <div class="row back-main">
     <div class="top-box">
-      <div class="col-6 offset-6">
+      <div class="col-lg-6 offset-lg-6">
         <div class="logo">
           <%= image_tag "pealco_logo.png", alt: "pealco", size: "400x250" %>
         </div>
         <div class="top-box-content">
-          <h2>ようこそ！PeAlcoへ！</h2>
-          <p>
-            今日帰った後の楽しみに、<br>
-            みんながどんな組み合わせで飲んでるか<br>
-            覗きにいきませんか？
-          </p>
+          <h1>ようこそ！PeAlcoへ！</h1>
         </div>
         <div class="top-box-list ma-t-50">
           <ul class="list-group list-group-horizontal">
-            <li class="list-group-item flex-fill top-list-item"><%= link_to "About", about_path %></li>
-            <li class="list-group-item flex-fill top-list-item"><%= link_to "Sign up", new_user_registration_path %></li>
-            <li class="list-group-item flex-fill top-list-item"><%= link_to "Log in", new_user_session_path %></li>
+            <li class="list-group-item flex-fill top-list-item"><h1><%= link_to "About", about_path %></h1></li>
+            <li class="list-group-item flex-fill top-list-item"><h1><%= link_to "Sign up", new_user_registration_path %></h1></li>
+            <li class="list-group-item flex-fill top-list-item"><h1><%= link_to "Log in", new_user_session_path %></h1></li>
           </ul>
         </div>
       </div>
     </div>
-  </>
+  </div>
+</div>
+<div class="container pa-30">
+  <div class="recommend-box ma-t-50">
+    <h1 class="font-30 center">Recommend Post</h1>
+    <div class="card-deck pa-20">
+      <% @recommend_posts.each do |post| %>
+        <div class="card">
+          <%= image_tag post.image.thumb300.to_s, class:"card-img-top", size:"300x200" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.content %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

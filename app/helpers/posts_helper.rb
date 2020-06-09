@@ -10,9 +10,9 @@ module PostsHelper
 
   def post_show_image(post)
     if post.image.blank?
-      image_tag "no-image.png", :size => "300x200"
+      image_tag "no-image.png", :size => "300x200", id: "img_prev"
     else
-      image_tag post.image.thumb300.to_s
+      image_tag post.image.thumb300.to_s, id: "img_prev"
     end
   end
 
@@ -23,6 +23,24 @@ module PostsHelper
     else
       category.name
     end
+  end
+
+  # 評価の平均値を出すための数値の配列生成
+  def rates(reviews)
+    rates = []
+    reviews.each do |review|
+      rates.push(review.rating)
+    end
+    return rates
+  end
+
+  # 評価の平均値を出すため
+  def average(array)
+    sum = 0
+    array.each do |num|
+      sum += num
+    end
+    return ave = sum / array.length
   end
 
 end

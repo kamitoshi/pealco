@@ -1,0 +1,19 @@
+<div class="recommend wid-90 ma-a">
+  <div class="recommend-box box center ma-b-30">
+    <h1 class="font-30">Recommend Post</h1>
+    <% if @recommend_posts.any? %>
+      <% @recommend_posts.each do |recommend| %>
+        <%= link_to post_path(recommend), class:"recommend-link" do %>
+          <div class="recommend-content-box pa-y-20">
+            <p class="menu-title"><span><%= recommend.title %></span></p>
+            <div class="sumnale-image-box">
+              <%= image_tag recommend.alc_category.image.thumb50.to_s %><span class="recommend-link pa-20">x</span><%= post_sumnail_image(recommend) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p class="center">おすすめ投稿がありません</p>
+    <% end %>
+  </div>
+</div>

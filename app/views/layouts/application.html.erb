@@ -5,36 +5,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Permanent+Marker&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/64b8b4bea1.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="body">
+    <div class="background"></div>
     <%= render "layouts/header" %>
-    <button type="button" class="btn btn-primary new-post-btn rounded-0" data-toggle="modal" data-target="#AlcCategoryModal">
-      <i class="fas fa-pencil-alt font-30"></i>
-    </button>
-    <div class="modal fade" id="AlcCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="AlcCategoryModalLabel">新規投稿</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>お酒のジャンルを選択してください</p>
-            <% AlcCategory.all.each do |category| %>
-              <div class="alc_category_tag ma-20 center">
-                <%= link_to category.name, new_post_path(alc_category_id: category.id), class:"btn btn-light btn-lg wid-100" %>
-              </div>
-            <% end %>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    <%= render "posts/new_post_modal" %>
+    <%= render "layouts/search_modal" %>
     <%= yield %>
     <%= render "layouts/footer" %>
   </div>

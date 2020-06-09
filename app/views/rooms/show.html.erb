@@ -10,7 +10,7 @@
         </h1>
       </div>
       <hr>
-      <div id="messages" class="pa-x-50 message-box">
+      <div id="messages" class="pa-x-50 message-box" data-current_user_id="<%= current_user.id %>">
         <%= render @messages %>
       </div>
       <div class="chat-input-box">
@@ -22,7 +22,7 @@
           <input type="submit" id="chat_btn" class="btn btn-primary wid-80">
         </div>
       </div>
-    </div>
+    </>
   </div> 
 </div>
 <script>

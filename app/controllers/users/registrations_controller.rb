@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout "no_footer", only:[:new]
+  layout "no_header", only:[:new]
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    flash[:notice] = "新規登録しました"
     cookies.encrypted[:user_id] = resource.id
   end
 
@@ -22,9 +23,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    flash[:notice] = "パスワードを変更しました"
+  end
 
   # DELETE /resource
   # def destroy
