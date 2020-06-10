@@ -6,7 +6,7 @@
     <div class="col-lg-8 ma-t-50">
       <div class="box sub-ribbon-wrapper">
         <div id="post-title" class="title">
-          <h１ class="font-30"><%= @post.title %></h１>
+          <h1 class="font-30"><%= @post.title %></h1>
         </div>
         <% if DateTime.now - 1 < @post.created_at %>
           <div class="sub-ribbon-content">
@@ -21,7 +21,7 @@
         </div>
         <hr>
         <div class="post-box pa-10">
-          <div class="row post-box-image">
+          <div class="row post-box-image pa-x-50">
             <div class="col-lg-6 image-item-alc">
               <%= image_tag @post.alc_category.image.thumb300.to_s, class:"image-box" %>
               <h2 class="menu-title ma-t-20"><span><%= @post.alc_category.name %></span></h2>
