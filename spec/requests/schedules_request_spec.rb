@@ -13,10 +13,11 @@ RSpec.describe "Schedules", type: :request do
 
     context "スケジュールを登録" do
       it "スケジュールを設定する" do
-        visit new_schedule_path(date: Date.today)
-        fill_in 'schedule_title', with:"test schedule"
+        visit new_schedule_path
+        fill_in('タイトル', with:"test schedule")
+        click_on("登録")
         pending
-        expect(click_button "登録").to change{Schedule.count}.by(1)
+        expect(Schedule.count).to eq 1
       end
     end
 

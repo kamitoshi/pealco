@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_review, only:[:show, :edit, :update, :destroy]
-  before_action :ransack
+
   def index
   end
 
@@ -30,7 +31,10 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-
+    unless @review.user == current_user
+      flash[:danger] = "他の人のレビューを編集することはできません"
+      redirect_to posts_path
+    end
   end
 
   def update
@@ -49,14 +53,13 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    post = @review.post
     if @review.user == current_user
       if @review.destroy
         flash[:success] = "レビューを削除しました"
-        redirect_to post_path(post)
+        redirect_to post_path(@review.post)
       else
         flash[:danger] = "削除に失敗しました"
-        redirect_to post_path(post)
+        redirect_to post_path(@review.post)
       end
     else
       flash[:danger] = "他の人のレビューは削除できません"
