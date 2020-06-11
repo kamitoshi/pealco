@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def edit
     unless @user == current_user
       flash[:danger] = "他の人のプロフィールは編集できません"
-      redirect_to users_path
+      redirect_to user_path(current_user)
     end
   end
 

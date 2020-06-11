@@ -22,7 +22,7 @@
             <%= link_to edit_post_review_path(review.post_id, review.id), class: "review_edit" do %>
               <i class="fas fa-edit" style="color: gray;"></i>
             <% end %>
-            <%= link_to post_review_path(review.post_id, review.id), method: :delete, remote: true, class: "review_destroy ma-l-20" do %>
+            <%= link_to post_review_path(review.post_id, review.id), method: :delete, class: "review_destroy ma-l-20" do %>
               <i class="fas fa-trash" style="color: gray;"></i>
             <% end %>
           <% end %>
