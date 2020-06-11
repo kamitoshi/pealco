@@ -8,7 +8,8 @@
 チャット機能を通して飲み友達を作ることも。  
 カレンダーを使って、オンライン飲み会のスケジュール管理も。
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSBIGTnGa0wmUCfVnVsjDHbFPuHVVAt7fUVfvkjw_bZ1_UOwHvNIUw542ast5ytlRpGzVA27KeUUSol/embed?start=true&loop=true&delayms=3000" frameborder="0" width="480" height="299" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+仕様
+https://docs.google.com/presentation/d/e/2PACX1vSBIGTnGa0wmUCfVnVsjDHbFPuHVVAt7fUVfvkjw_bZ1_UOwHvNIUw542ast5ytlRpGzVA27KeUUSol/embed?start=true&loop=true&delayms=3000
 
 ## 設計詳細
 
