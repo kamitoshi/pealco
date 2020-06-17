@@ -10,12 +10,13 @@
         <%= image_tag @post.image.thumb300.to_s, size:"300x200", id: "img_prev" %>
       <% end %>
     </div>
-    <%= f.file_field :image, id: "input_img" %>
+    <span>※料理の画像を保存してください</span><br>
+    <%= f.file_field :image,id: "input_img" %>
   </div>
 
   <div class="form-group">
     <%= f.label :title, "タイトル" %>
-    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+    <%= f.text_field :title, autofocus: true, class: "form-control", placeholder:"例：　THE・定番" %>
     <div class="invalid-feedback">
       タイトルを確認してください
     </div>
@@ -23,7 +24,7 @@
 
   <div class="form-group">
     <%= f.label :menu_name, "メニュー名" %>
-    <%= f.text_field :menu_name, class: "form-control" %>
+    <%= f.text_field :menu_name, class: "form-control", placeholder:"例：　餃子" %>
     <div class="invalid-feedback">
       メニュー名を確認してください
     </div>
